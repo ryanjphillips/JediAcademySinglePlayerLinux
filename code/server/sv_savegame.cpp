@@ -154,7 +154,7 @@ static LPCSTR SG_AddSavePath( LPCSTR psPathlessBaseName )
 
 	if(psPathlessBaseName)
 	{
-		char *p = strchr(psPathlessBaseName,'/');
+		char *p = const_cast<char*>(strchr(psPathlessBaseName,'/'));
 		if (p)
 		{
 			while (p)
