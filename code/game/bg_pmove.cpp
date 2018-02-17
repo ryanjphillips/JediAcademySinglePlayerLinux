@@ -4088,7 +4088,7 @@ static void PM_CrashLand( void )
 				}
 			}
 		}
-		else if ( pm->cmd.upmove >= 0 && !PM_InKnockDown( pm->ps ) && !PM_InRoll( pm->ps ))
+		else if ( (pm->cmd.upmove >= 0 || g_disableCrouchBoosts->integer) && !PM_InKnockDown( pm->ps ) && !PM_InRoll( pm->ps ))
 		{//not crouching
 			if ( delta > 10 
 				|| pm->ps->pm_flags & PMF_BACKWARDS_JUMP 
@@ -4099,6 +4099,12 @@ static void PM_CrashLand( void )
 					&& pm->gent->client 
 					&& (pm->gent->client->NPC_class == CLASS_RANCOR || pm->gent->client->NPC_class == CLASS_WAMPA ) )
 				{
+				}
+				else if ( pm->cmd.upmove < 0 )
+				{
+					//stick landings some
+					pm->ps->velocity[0] *= 0.5f;
+					pm->ps->velocity[1] *= 0.5f;
 				}
 				else
 				{

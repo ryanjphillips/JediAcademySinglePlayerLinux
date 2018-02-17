@@ -238,6 +238,7 @@ extern cvar_t	*g_npcdebug;
 
 // New additions for Speed-Academy
 extern	cvar_t	*g_fixSpinGlitch;
+extern	cvar_t  *g_disableCrouchBoosts;
 
 extern gentity_t *player;
 //

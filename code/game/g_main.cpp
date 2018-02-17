@@ -199,6 +199,7 @@ cvar_t	*g_broadsword;
 
 // New additions for Speed-Academy
 cvar_t	*g_fixSpinGlitch;
+cvar_t	*g_disableCrouchBoosts;
 
 qboolean	stop_icarus = qfalse;
 
@@ -675,6 +676,7 @@ void G_InitCvars( void ) {
 	g_broadsword = gi.cvar( "broadsword", "1", 0);
 
 	g_fixSpinGlitch = gi.cvar( "g_fixSpinGlitch", "0", 0 );
+	g_disableCrouchBoosts = gi.cvar( "g_disableCrouchBoosts", "0", 0 );
 
 	gi.cvar( "tier_storyinfo", "0", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
 	gi.cvar( "tiers_complete", "", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
