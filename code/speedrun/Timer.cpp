@@ -9,32 +9,6 @@ volatile int current_total_time = 0;
 volatile int current_level_time = 0;
 bool paused = true;
 
-
-void SpeedrunPrintTime(char const *description, int milliseconds)
-{
-	constexpr int HOUR_IN_MILLISECONDS = 1000 * 60 * 60;
-	constexpr int MINUTE_IN_MILLISECONDS = 1000 * 60;
-	constexpr int SECOND_IN_MILLISECONDS = 1000;
-
-	int const hours = milliseconds / HOUR_IN_MILLISECONDS;
-	milliseconds %= HOUR_IN_MILLISECONDS;
-	int const minutes = milliseconds / MINUTE_IN_MILLISECONDS;
-	milliseconds %= MINUTE_IN_MILLISECONDS;
-	int const seconds = milliseconds / SECOND_IN_MILLISECONDS;
-	milliseconds %= SECOND_IN_MILLISECONDS;
-
-	if (hours > 0)
-	{
-		Com_Printf("%s%i:%02i:%02i.%03i\n",
-		           description, hours, minutes, seconds, milliseconds);
-	}
-	else
-	{
-		Com_Printf("%s%02i:%02i.%03i\n",
-		           description, minutes, seconds, milliseconds);
-	}
-}
-
 void SpeedrunResetTimer()
 {
 	last_timestamp = 0;
@@ -92,11 +66,18 @@ void SpeedrunLevelFinished()
 		SpeedrunStoreCurrentTime();
 	}
 
-	SpeedrunPrintTime(S_COLOR_RED "=========================\n"
-	                  S_COLOR_GREEN "Level time: " S_COLOR_WHITE, current_level_time);
+	constexpr int PRINT_ACCURACY = 3;
+	std::string time_string = GetTimeStringFromMilliseconds(current_level_time,
+	                                                        PRINT_ACCURACY);
+	Com_Printf(S_COLOR_RED "=========================\n"
+	           S_COLOR_GREEN "Level time: " S_COLOR_WHITE "%s\n",
+			   time_string.c_str());
 	if (current_level_time != current_total_time)
 	{
-		SpeedrunPrintTime(S_COLOR_GREEN "Total time: " S_COLOR_WHITE, current_total_time);
+		time_string = GetTimeStringFromMilliseconds(current_total_time,
+		                                            PRINT_ACCURACY);
+		Com_Printf(S_COLOR_GREEN "Total time: " S_COLOR_WHITE "%s\n",
+		           time_string.c_str());
 	}
 	Com_Printf(S_COLOR_RED "=========================\n");
 

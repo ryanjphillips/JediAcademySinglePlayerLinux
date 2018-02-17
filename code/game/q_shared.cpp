@@ -1212,6 +1212,46 @@ qboolean COM_ParseVec4( const char **buffer, vec4_t *c)
 	return qfalse;
 }
 
+/*
+==========================================================
+Additions for Speed-Academy
+==========================================================
+*/
+#include <algorithm>
+#include <iomanip>
+#include <sstream>
+
+std::string GetTimeStringFromMilliseconds(int milliseconds, int accuracy)
+{
+	constexpr int HOUR_IN_MILLISECONDS = 1000 * 60 * 60;
+	constexpr int MINUTE_IN_MILLISECONDS = 1000 * 60;
+	constexpr int SECOND_IN_MILLISECONDS = 1000;
+	constexpr int MAX_ACCURACY = 3;
+
+	int const hours = milliseconds / HOUR_IN_MILLISECONDS;
+	milliseconds %= HOUR_IN_MILLISECONDS;
+	int const minutes = milliseconds / MINUTE_IN_MILLISECONDS;
+	milliseconds %= MINUTE_IN_MILLISECONDS;
+	int const seconds = milliseconds / SECOND_IN_MILLISECONDS;
+	milliseconds %= SECOND_IN_MILLISECONDS;
+
+	std::stringstream time_string;
+	time_string << std::setfill('0');
+	if (hours > 0)
+	{
+		time_string << hours << ":" << std::setw(2);
+	}
+	time_string << minutes << ":" << std::setw(2) << seconds;
+	if (accuracy > 0)
+	{
+		accuracy = std::min(accuracy, 3);
+		int const divisor = static_cast<int>(std::pow(10, MAX_ACCURACY - accuracy));
+		int const printed_decimals = milliseconds / divisor;
+		time_string << "." << std::setw(accuracy) << printed_decimals;
+	}
+
+	return time_string.str();
+}
 
 
 // end
