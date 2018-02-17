@@ -3287,25 +3287,14 @@ static float CG_DrawFPS( float y ) {
 }
 
 /*
-=================
-CG_DrawTimer
-=================
+=============================
+CG_DrawFormattedMilliseconds
+=============================
 */
-static float CG_DrawTimer( float y ) {
-	char		*s;
-	int			w;
-	int			mins, seconds, tens;
-
-	seconds = cg.time / 1000;
-	mins = seconds / 60;
-	seconds -= mins * 60;
-	tens = seconds / 10;
-	seconds -= tens * 10;
-
-	s = va( "%i:%i%i", mins, tens, seconds );
-
-	w = cgi_R_Font_StrLenPixels(s, cgs.media.qhFontMedium, 1.0f);	
-	cgi_R_Font_DrawString(635 - w, y+2, s, colorTable[CT_LTGOLD1], cgs.media.qhFontMedium, -1, 1.0f);
+static float CG_DrawFormattedMilliseconds( int milliseconds, int accuracy, float y ) {
+	std::string const time_string = GetTimeStringFromMilliseconds(milliseconds, accuracy);
+	int const width = cgi_R_Font_StrLenPixels(time_string.c_str(), cgs.media.qhFontMedium, 1.0f);
+	cgi_R_Font_DrawString(635 - width, y + 2, time_string.c_str(), colorTable[CT_LTGOLD1], cgs.media.qhFontMedium, -1, 1.0f);
 
 	return y + BIGCHAR_HEIGHT + 10;
 }
@@ -3872,7 +3861,15 @@ static void CG_Draw2D( void )
 		y=CG_DrawFPS(y);
 	} 
 	if (cg_drawTimer.integer) {
-		y=CG_DrawTimer(y);
+		y=CG_DrawFormattedMilliseconds(cg.time, 0, y);
+	}
+	if (cg_drawSpeedrunTotalTimer.integer > 0) {
+		y=CG_DrawFormattedMilliseconds(cgi_SpeedrunGetTotalTimeMilliseconds(),
+			cg_drawSpeedrunTotalTimer.integer - 1, y);
+	}
+	if (cg_drawSpeedrunLevelTimer.integer > 0) {
+		y=CG_DrawFormattedMilliseconds(cgi_SpeedrunGetLevelTimeMilliseconds(),
+			cg_drawSpeedrunLevelTimer.integer - 1, y);
 	}
 
 	// don't draw center string if scoreboard is up
