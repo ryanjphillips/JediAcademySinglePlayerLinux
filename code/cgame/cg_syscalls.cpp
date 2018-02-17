@@ -659,3 +659,11 @@ void cgi_SpeedrunLevelFinished(void)
 {
 	syscall(CG_SPEEDRUN_LEVEL_FINISHED);
 }
+
+int cgi_SpeedrunGetTotalTimeMilliseconds(void) {
+	return syscall(CG_SPEEDRUN_GET_TOTAL_TIME_MILLISECONDS);
+}
+
+int cgi_SpeedrunGetLevelTimeMilliseconds(void) {
+	return syscall(CG_SPEEDRUN_GET_LEVEL_TIME_MILLISECONDS);
+}

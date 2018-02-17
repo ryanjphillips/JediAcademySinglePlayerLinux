@@ -1025,6 +1025,10 @@ Ghoul2 Insert End
 	case CG_SPEEDRUN_LEVEL_FINISHED:
 		SpeedrunLevelFinished();
 		break;
+	case CG_SPEEDRUN_GET_TOTAL_TIME_MILLISECONDS:
+		return SpeedrunGetTotalTimeMilliseconds();
+	case CG_SPEEDRUN_GET_LEVEL_TIME_MILLISECONDS:
+		return SpeedrunGetLevelTimeMilliseconds();
 	default:
 		Com_Error( ERR_DROP, "Bad cgame system trap: %i", args[0] );
 	}

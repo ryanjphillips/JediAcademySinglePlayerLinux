@@ -102,3 +102,13 @@ void SpeedrunLevelFinished()
 
 	stored_level_time = 0;
 }
+
+int SpeedrunGetTotalTimeMilliseconds()
+{
+	return current_total_time;
+}
+
+int SpeedrunGetLevelTimeMilliseconds()
+{
+	return current_level_time;
+}
