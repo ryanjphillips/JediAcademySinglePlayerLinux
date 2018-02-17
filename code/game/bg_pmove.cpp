@@ -3994,7 +3994,8 @@ static void PM_CrashLand( void )
 		}
 		else if ( pm->ps->jumpZStart && (pm->ps->forcePowerLevel[FP_LEVITATION] >= FORCE_LEVEL_1||(pm->ps->clientNum < MAX_CLIENTS||PM_ControlledByPlayer())) )
 		{//we were force-jumping
-			if ( pm->ps->origin[2] >= pm->ps->jumpZStart )
+			const float tolerance = (g_disableRandomBoosts->integer ? 0.25f : 0.0f);
+			if ( pm->ps->origin[2] + tolerance >= pm->ps->jumpZStart )
 			{//we landed at same height or higher than we landed
 				if ( pm->ps->forceJumpZStart )
 				{//we were force-jumping
