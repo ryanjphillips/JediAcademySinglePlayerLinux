@@ -3299,6 +3299,28 @@ static float CG_DrawFormattedMilliseconds( int milliseconds, int accuracy, float
 	return y + BIGCHAR_HEIGHT + 10;
 }
 
+/*
+===========================
+CG_DrawMovementRestriction
+===========================
+*/
+static float CG_DrawMovementRestriction(float y) {
+	extern cvar_t *g_fixSpinGlitch;
+	extern cvar_t *g_disableCrouchBoosts;
+
+	std::string restriction_string = "EB";
+	if ( !g_fixSpinGlitch->integer ) {
+		restriction_string = "SG";
+	} else if ( !g_disableCrouchBoosts->integer ) {
+		restriction_string = "CB";
+	}
+
+	int const width = cgi_R_Font_StrLenPixels(restriction_string.c_str(), cgs.media.qhFontMedium, 1.0f);
+	cgi_R_Font_DrawString(635 - width, y + 2, restriction_string.c_str(), colorTable[CT_LTGOLD1], cgs.media.qhFontMedium, -1, 1.0f);
+
+	return y + BIGCHAR_HEIGHT + 10;
+}
+
 
 /*
 =================
@@ -3870,6 +3892,9 @@ static void CG_Draw2D( void )
 	if (cg_drawSpeedrunLevelTimer.integer > 0) {
 		y=CG_DrawFormattedMilliseconds(cgi_SpeedrunGetLevelTimeMilliseconds(),
 			cg_drawSpeedrunLevelTimer.integer - 1, y);
+	}
+	if (cg_drawMovementRestriction.integer) {
+		y=CG_DrawMovementRestriction(y);
 	}
 
 	// don't draw center string if scoreboard is up

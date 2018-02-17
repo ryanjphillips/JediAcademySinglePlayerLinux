@@ -323,6 +323,7 @@ vmCvar_t	cg_debugHealthBars;
 // New additions for Speed-Academy
 vmCvar_t	cg_drawSpeedrunTotalTimer;
 vmCvar_t	cg_drawSpeedrunLevelTimer;
+vmCvar_t	cg_drawMovementRestriction;
 
 typedef struct {
 	vmCvar_t	*vmCvar;
@@ -434,6 +435,7 @@ static cvarTable_t cvarTable[] = {
 	
 	{ &cg_drawSpeedrunTotalTimer, "cg_drawSpeedrunTotalTimer", "0", CVAR_ARCHIVE  },
 	{ &cg_drawSpeedrunLevelTimer, "cg_drawSpeedrunLevelTimer", "0", CVAR_ARCHIVE  },
+	{ &cg_drawMovementRestriction, "cg_drawMovementRestriction", "0", CVAR_ARCHIVE },
 };
 
 static int cvarTableSize = sizeof( cvarTable ) / sizeof( cvarTable[0] );
