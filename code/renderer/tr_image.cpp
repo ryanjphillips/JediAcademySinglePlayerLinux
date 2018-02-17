@@ -2782,6 +2782,27 @@ void R_CreateBuiltinImages( void ) {
 	R_CreateFogImage();
 }
 
+void R_DeleteBuiltinImages()
+{
+	if ( tr.screenGlow != 0 )
+	{
+		qglDeleteTextures( 1, &tr.screenGlow );
+		tr.screenGlow = 0;
+	}
+
+	if ( tr.sceneImage != 0 )
+	{
+		qglDeleteTextures( 1, &tr.sceneImage );
+		tr.sceneImage = 0;
+	}
+
+	if ( tr.blurImage != 0 )
+	{
+		qglDeleteTextures( 1, &tr.blurImage );
+		tr.blurImage = 0;
+	}
+}
+
 
 /*
 ===============

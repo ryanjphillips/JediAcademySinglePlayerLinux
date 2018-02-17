@@ -301,6 +301,8 @@ void SV_SpawnServer( char *server, ForceReload_e eForceReload, qboolean bAllowSc
 #ifdef _XBOX
 	// Deletes all textures
 	R_DeleteTextures();
+#else
+	R_DeleteBuiltinImages();
 #endif
 	Hunk_Clear();
 

@@ -1329,6 +1329,8 @@ void R_Init( void ) {
 		void CM_CleanLeafCache(void);
 		CM_CleanLeafCache();
 	}
+#else
+	R_DeleteBuiltinImages();
 #endif
 
 	ShaderEntryPtrs_Clear();
@@ -1477,12 +1479,15 @@ void RE_Shutdown( qboolean destroyWindow ) {
 
 			// Release the scene glow texture.
 			qglDeleteTextures( 1, &tr.screenGlow );
+			tr.screenGlow = 0;
 
 			// Release the scene texture.
 			qglDeleteTextures( 1, &tr.sceneImage );
+			tr.sceneImage = 0;
 
 			// Release the blur texture.
 			qglDeleteTextures( 1, &tr.blurImage );
+			tr.blurImage = 0;
 		}
 #endif
 //		R_SyncRenderThread();
@@ -1498,6 +1503,12 @@ void RE_Shutdown( qboolean destroyWindow ) {
 	// shut down platform specific OpenGL stuff
 	if ( destroyWindow ) {
 		GLimp_Shutdown();
+		// GLimp_Shutdown frees the gl context, so we dont have to free the
+		// builtin images. Therefore set these to zero to signal that they have
+		// already been freed
+		tr.screenGlow = 0;
+		tr.sceneImage = 0;
+		tr.blurImage = 0;
 	}
 	tr.registered = qfalse;
 }
