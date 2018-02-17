@@ -1212,11 +1212,11 @@ int Q_isalpha( int c );
 //char	*Q_strrchr( const char* string, int c );
 
 // NON-portable (but faster) versions
-inline int	        Q_stricmp (const char *s1, const char *s2) { return stricmp(s1, s2); }
+inline int	        Q_stricmp (const char *s1, const char *s2) { return _stricmp(s1, s2); }
 inline int	        Q_strncmp (const char *s1, const char *s2, int n) { return strncmp(s1, s2, n); }
-inline int	        Q_stricmpn (const char *s1, const char *s2, int n) { return strnicmp(s1, s2, n); }
-inline char	        *Q_strlwr( char *s1 ) { return strlwr(s1); }
-inline char	        *Q_strupr( char *s1 ) { return strupr(s1); }
+inline int	        Q_stricmpn (const char *s1, const char *s2, int n) { return _strnicmp(s1, s2, n); }
+inline char	        *Q_strlwr( char *s1 ) { return _strlwr(s1); }
+inline char	        *Q_strupr( char *s1 ) { return _strupr(s1); }
 inline const char	*Q_strrchr( const char* str, int c ) { return strrchr(str, c); }
 
 

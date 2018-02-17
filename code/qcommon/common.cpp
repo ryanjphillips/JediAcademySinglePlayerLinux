@@ -437,7 +437,7 @@ void Com_StartupVariable( const char *match ) {
 		}
 
 		s = Cmd_Argv(1);
-		if ( !match || !stricmp( s, match ) ) {
+		if ( !match || !_stricmp( s, match ) ) {
 			Cvar_Set( s, Cmd_Argv(2) );
 			cv = Cvar_Get( s, "", 0 );
 			cv->flags |= CVAR_USER_CREATED;

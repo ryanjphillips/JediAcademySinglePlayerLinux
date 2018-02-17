@@ -103,7 +103,7 @@ MultiEffect* FFSet::Register( const char *path, qboolean create )
 
 				temp[0] = 0;
 				afterincludepath[separator] = 0;
-				if ( stricmp( afterincludepath + separator - 4, ".ifr" ) )
+				if ( _stricmp( afterincludepath + separator - 4, ".ifr" ) )
 				{
 					memcpy( temp, afterincludepath + separator + 1, 4 );
 					sprintf( afterincludepath + separator, ".ifr" );
@@ -264,7 +264,7 @@ void FFSet::Display( TNameTable &Unprocessed, TNameTable &Processed )
 	;	itName != Unprocessed.end()
 	;
 	){
-		if ( stricmp( "order", (*itName).c_str() ) == 0 )
+		if ( _stricmp( "order", (*itName).c_str() ) == 0 )
 		{
 			if ( ff_developer->integer )
 				DisplaySearchOrder();
@@ -275,7 +275,7 @@ void FFSet::Display( TNameTable &Unprocessed, TNameTable &Processed )
 			itName = Unprocessed.erase( itName );
 		}
 		else
-		if ( stricmp( "files", (*itName).c_str() ) == 0 )
+		if ( _stricmp( "files", (*itName).c_str() ) == 0 )
 		{
 			if ( ff_developer->integer )
 				DisplayLoadedFiles();

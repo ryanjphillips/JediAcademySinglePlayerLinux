@@ -362,7 +362,7 @@ void CIcarus::Precache(char* buffer, long length)
 			
 			sVal1 = (const char *) block.GetMemberData( 0 );
 
-			if (!stricmp(sVal1,"PLAY_ROFF"))
+			if (!_stricmp(sVal1,"PLAY_ROFF"))
 			{
 				sVal1 = (const char *) block.GetMemberData( 1 );
 

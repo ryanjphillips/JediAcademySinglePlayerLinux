@@ -1354,8 +1354,8 @@ static void GLW_InitExtensions( void )
 
 	// Figure out which texture rectangle extension to use.
 	bool bTexRectSupported = false;
-	if ( strnicmp( glConfig.vendor_string, "ATI Technologies",16 )==0
-		&& strnicmp( glConfig.version_string, "1.3.3",5 )==0 
+	if ( _strnicmp( glConfig.vendor_string, "ATI Technologies",16 )==0
+		&& _strnicmp( glConfig.version_string, "1.3.3",5 )==0 
 		&& glConfig.version_string[5] < '9' ) //1.3.34 and 1.3.37 and 1.3.38 are broken for sure, 1.3.39 is not
 	{
 		g_bTextureRectangleHack = true;
@@ -1529,7 +1529,7 @@ static qboolean GLW_LoadOpenGL()
 	char buffer[1024];
 	qboolean cdsFullscreen;
 
-	strlwr( strcpy( buffer, OPENGL_DRIVER_NAME ) );
+	_strlwr( strcpy( buffer, OPENGL_DRIVER_NAME ) );
 
 	//
 	// load the driver and bind our function pointers to it
@@ -1582,7 +1582,7 @@ void GLimp_EndFrame (void)
 
 
 	// don't flip if drawing to front buffer
-	//if ( stricmp( r_drawBuffer->string, "GL_FRONT" ) != 0 )
+	//if ( _stricmp( r_drawBuffer->string, "GL_FRONT" ) != 0 )
 	{
 		SwapBuffers( glw_state.hDC );
 	}
@@ -1663,7 +1663,7 @@ void GLimp_Init( void )
 	// chipset specific configuration
 	//
 	strcpy( buf, glConfig.renderer_string );
-	strlwr( buf );
+	_strlwr( buf );
 
 	//
 	// NOTE: if changing cvars, do it within this block.  This allows them

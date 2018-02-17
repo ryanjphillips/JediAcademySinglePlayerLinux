@@ -110,7 +110,7 @@ void FFChannelSet::Display( TNameTable &Unprocessed, TNameTable &Processed )
 	;	itName != Unprocessed.end()
 	;
 	){
-		if ( stricmp( "channels", (*itName).c_str() ) == 0 )
+		if ( _stricmp( "channels", (*itName).c_str() ) == 0 )
 		{
 			Com_Printf( "[available channels]\n" );
 
@@ -133,7 +133,7 @@ void FFChannelSet::Display( TNameTable &Unprocessed, TNameTable &Processed )
 			Processed.push_back( *itName );
 			itName = Unprocessed.erase( itName );
 		}
-		else if ( stricmp( "devices", (*itName).c_str() ) == 0 )
+		else if ( _stricmp( "devices", (*itName).c_str() ) == 0 )
 		{
 			Com_Printf( "[initialized devices]\n" );
 

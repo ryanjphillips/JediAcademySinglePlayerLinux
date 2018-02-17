@@ -2302,7 +2302,7 @@ static void ParseMaterial( const char **text )
 	}
 	for(i = 0; i < MATERIAL_LAST; i++)
 	{
-		if ( !stricmp( token, materialNames[i] ) ) 
+		if ( !_stricmp( token, materialNames[i] ) ) 
 		{
 			shader.surfaceFlags &= ~MATERIAL_MASK;//safety, clear it first
 			shader.surfaceFlags |= i;
@@ -2424,7 +2424,7 @@ static qboolean ParseShader( const char  **text )
 		}
 		// material deprecated as of 11 Jan 01
 		// material undeprecated as of 7 May 01 - q3map_material deprecated
-		else if ( !stricmp( token, "material" ) || !stricmp( token, "q3map_material" ) )
+		else if ( !_stricmp( token, "material" ) || !_stricmp( token, "q3map_material" ) )
 		{
 			ParseMaterial( text );
 		}
@@ -3310,7 +3310,7 @@ static const char *FindShaderInShaderText( const char *shadername ) {
 	
 	char sLowerCaseName[MAX_QPATH];
 	Q_strncpyz(sLowerCaseName,shadername,sizeof(sLowerCaseName));
-	strlwr(sLowerCaseName);	// Q_strlwr is pretty gay, so I'm not using it
+	_strlwr(sLowerCaseName);	// Q_strlwr is pretty gay, so I'm not using it
 
 	return ShaderEntryPtrs_Lookup(sLowerCaseName);
 
@@ -3744,8 +3744,8 @@ static void SetupShaderEntryPtrs(void)
 		}
 		else
 		{
-			strlwr(token);	// token is always a ptr to com_token here, not the original buffer. 
-							//	(Not that it matters, except for reasons of speed by not strlwr'ing the whole buffer)
+			_strlwr(token);	// token is always a ptr to com_token here, not the original buffer. 
+							//	(Not that it matters, except for reasons of speed by not _strlwr'ing the whole buffer)
 
 			// token = a string of this shader name, p = ptr within s_shadertext it's found at, so store it...
 			//

@@ -46,7 +46,7 @@ int G_FindConfigstringIndex( const char *name, int start, int max, qboolean crea
 		if ( !s[0] ) {
 			break;
 		}
-		if ( !stricmp( s, name ) ) {
+		if ( !_stricmp( s, name ) ) {
 			return i;
 		}
 	}
@@ -650,7 +650,7 @@ void G_UseTargets2 (gentity_t *ent, gentity_t *activator, const char *string)
 //
 	if (string)
 	{
-		if( !stricmp( string, "self") )
+		if( !_stricmp( string, "self") )
 		{
 			t = ent;
 			if (t->e_UseFunc != useF_NULL)	// check can be omitted
@@ -1657,11 +1657,11 @@ static qboolean G_IsTriggerUsable(gentity_t* self, gentity_t* other)
 
 	if ((!G_ValidActivateBehavior (self, BSET_USE) && !self->target) ||
 		(self->target && 
-		(stricmp(self->target, "n") == 0 || 
-		(stricmp(self->target, "neveropen") == 0 || 
-		(stricmp(self->target, "run_gran_drop") == 0) ||
-		(stricmp(self->target, "speaker") == 0) ||
-		(stricmp(self->target, "locked") == 0)
+		(_stricmp(self->target, "n") == 0 || 
+		(_stricmp(self->target, "neveropen") == 0 || 
+		(_stricmp(self->target, "run_gran_drop") == 0) ||
+		(_stricmp(self->target, "speaker") == 0) ||
+		(_stricmp(self->target, "locked") == 0)
 		))))
 	{
 		return qfalse;

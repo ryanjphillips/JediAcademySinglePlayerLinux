@@ -1171,7 +1171,7 @@ int CM_LoadSubBSP(const char *name, qboolean clientload)
 	count = cmg.numSubModels;
 	for(i = 0; i < NumSubBSP; i++)
 	{
-		if (!stricmp(name, SubBSP[i].name))
+		if (!_stricmp(name, SubBSP[i].name))
 		{
 			return count;
 		}

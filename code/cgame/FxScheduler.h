@@ -361,7 +361,7 @@ struct SEffectTemplate
 
 	bool operator == (const char * name) const 
 	{
-		return !stricmp( mEffectName, name );
+		return !_stricmp( mEffectName, name );
 	}
 	void operator=(const SEffectTemplate &that);
 };

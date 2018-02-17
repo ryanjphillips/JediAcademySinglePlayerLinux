@@ -1850,7 +1850,7 @@ int G2_FindConfigStringSpace(char *name, int start, int max)
 		{
 			break;
 		}
-		if ( !stricmp( s, name ) ) 
+		if ( !_stricmp( s, name ) ) 
 		{
 			return i;
 		}
