@@ -284,7 +284,10 @@ const char *SkipWhitespace( const char *data, qboolean *hasNewLines )
 		}
 		if( c == '\n' ) 
 		{
-			parseData[parseDataCount].com_lines++;
+			if( parseDataCount >= 0 && parseDataCount < 2 )
+			{
+				parseData[parseDataCount].com_lines++;
+			}
 			*hasNewLines = qtrue;
 		}
 		data++;
@@ -385,7 +388,7 @@ char *COM_ParseExt( const char **data_p, qboolean allowLineBreaks )
 		}
 		data++;
 		c = *data;
-		if ( c == '\n' )
+		if ( c == '\n' && parseDataCount >= 0 && parseDataCount < 2 )
 		{
 			parseData[parseDataCount].com_lines++;
 		}
@@ -538,7 +541,9 @@ void SkipRestOfLine ( const char **data ) {
 	p = *data;
 	while ( (c = *p++) != 0 ) {
 		if ( c == '\n' ) {
-			parseData[parseDataCount].com_lines++;
+			if ( parseDataCount >= 0 && parseDataCount < 2 ) {
+				parseData[parseDataCount].com_lines++;
+			}
 			break;
 		}
 	}
