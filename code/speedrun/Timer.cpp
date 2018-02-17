@@ -63,6 +63,16 @@ void SpeedrunUnpauseTimer()
 	last_timestamp = Sys_Milliseconds();
 }
 
+void SpeedrunStoreCurrentTime()
+{
+	int const current_timestamp = Sys_Milliseconds();
+	stored_total_time += (current_timestamp - last_timestamp);
+	stored_level_time += (current_timestamp - last_timestamp);
+	current_total_time = stored_total_time;
+	current_level_time = stored_level_time;
+	last_timestamp = current_timestamp;
+}
+
 bool SpeedrunPauseTimer()
 {
 	if (paused)
@@ -70,12 +80,7 @@ bool SpeedrunPauseTimer()
 		return true;
 	}
 
-	int const current_timestamp = Sys_Milliseconds();
-	stored_total_time += (current_timestamp - last_timestamp);
-	stored_level_time += (current_timestamp - last_timestamp);
-	current_total_time = stored_total_time;
-	current_level_time = stored_level_time;
-	last_timestamp = current_timestamp;
+	SpeedrunStoreCurrentTime();
 	paused = true;
 	return false;
 }
@@ -84,12 +89,7 @@ void SpeedrunLevelFinished()
 {
 	if (!paused)
 	{
-		int const current_timestamp = Sys_Milliseconds();
-		stored_total_time += (current_timestamp - last_timestamp);
-		stored_level_time += (current_timestamp - last_timestamp);
-		current_total_time = stored_total_time;
-		current_level_time = stored_level_time;
-		last_timestamp = current_timestamp;
+		SpeedrunStoreCurrentTime();
 	}
 
 	SpeedrunPrintTime(S_COLOR_RED "=========================\n"
