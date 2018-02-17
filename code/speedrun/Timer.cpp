@@ -3,9 +3,10 @@
 
 
 int last_timestamp = 0;
-int stored_level_time = 0;
 int stored_total_time = 0;
+int stored_level_time = 0;
 volatile int current_total_time = 0;
+volatile int current_level_time = 0;
 bool paused = true;
 
 
@@ -37,9 +38,10 @@ void SpeedrunPrintTime(char const *description, int milliseconds)
 void SpeedrunResetTimer()
 {
 	last_timestamp = 0;
-	stored_level_time = 0;
 	stored_total_time = 0;
+	stored_level_time = 0;
 	current_total_time = 0;
+	current_level_time = 0;
 	paused = true;
 }
 
@@ -52,6 +54,7 @@ void SpeedrunUpdateTimer()
 	
 	int const current_timestamp = Sys_Milliseconds();
 	current_total_time = stored_total_time + (current_timestamp - last_timestamp);
+	current_level_time = stored_level_time + (current_timestamp - last_timestamp);
 }
 
 void SpeedrunUnpauseTimer()
@@ -71,6 +74,7 @@ bool SpeedrunPauseTimer()
 	stored_total_time += (current_timestamp - last_timestamp);
 	stored_level_time += (current_timestamp - last_timestamp);
 	current_total_time = stored_total_time;
+	current_level_time = stored_level_time;
 	last_timestamp = current_timestamp;
 	paused = true;
 	return false;
@@ -84,12 +88,13 @@ void SpeedrunLevelFinished()
 		stored_total_time += (current_timestamp - last_timestamp);
 		stored_level_time += (current_timestamp - last_timestamp);
 		current_total_time = stored_total_time;
+		current_level_time = stored_level_time;
 		last_timestamp = current_timestamp;
 	}
 
 	SpeedrunPrintTime(S_COLOR_RED "=========================\n"
-	                  S_COLOR_GREEN "Level time: " S_COLOR_WHITE, stored_level_time);
-	if (stored_level_time != current_total_time)
+	                  S_COLOR_GREEN "Level time: " S_COLOR_WHITE, current_level_time);
+	if (current_level_time != current_total_time)
 	{
 		SpeedrunPrintTime(S_COLOR_GREEN "Total time: " S_COLOR_WHITE, current_total_time);
 	}
