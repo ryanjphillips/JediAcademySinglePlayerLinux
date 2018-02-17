@@ -2213,6 +2213,7 @@ void CG_DrawCredits(void)
 		{//Were skipping a cinematic and it's over now
 			gi.cvar_set("timescale", "1");
 			gi.cvar_set("skippingCinematic", "0");
+			cgi_SpeedrunUnpauseTimer();
 		}
 	}
 

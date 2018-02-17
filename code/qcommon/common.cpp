@@ -14,6 +14,8 @@
 #include "platform.h"
 #endif
 
+#include "../speedrun/Timer.h"
+
 #define	MAXPRINTMSG	4096
 
 #define MAX_NUM_ARGVS	50
@@ -1272,6 +1274,8 @@ try
 	int		timeBeforeFirstEvents, timeBeforeServer, timeBeforeEvents, timeBeforeClient, timeAfter;
 	int		msec, minMsec;
 	static int	lastTime;
+
+	SpeedrunUpdateTimer();
 
 	// write config file if anything changed
 #ifndef _XBOX

@@ -21,6 +21,8 @@ extern byte *Compress_JPG(int *pOutputSize, int quality, int image_width, int im
 #include "..\game\weapons.h"
 #include "..\game\g_items.h"
 
+#include "..\speedrun\Timer.h"
+
 #ifdef _XBOX
 #include <stdlib.h>
 //support for mbstowcs
@@ -566,6 +568,11 @@ void SV_LoadGame_f(void)
 		return;
 	}
 #endif
+
+	if (strncmp("auto_", psFilename, strlen("auto_")) == 0)
+	{
+		SpeedrunResetTimer();
+	}
 
 	// special case, if doing a respawn then check that the available auto-save (if any) is from the same map
 	//	as we're currently on (if in a map at all), if so, load that "auto", else re-load the last-loaded file...
@@ -1283,6 +1290,9 @@ qboolean SG_ReadSavegame(const char *psPathlessBaseName)
 		sv_testsave->integer = iPrevTestSave;
 		return qfalse;
 	}
+
+	// Disk I/O is slow, so lets explicitly pause the timer here already
+	SpeedrunPauseTimer();
 
 	// this check isn't really necessary, but it reminds me that these two strings may actually be the same physical one.
 	//

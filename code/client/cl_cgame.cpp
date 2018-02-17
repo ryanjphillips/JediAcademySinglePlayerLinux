@@ -30,6 +30,8 @@ Ghoul2 Insert Start
 	#include "../ghoul2/G2.h"
 #endif
 
+#include "../speedrun/Timer.h"
+
 /*
 Ghoul2 Insert End
 */
@@ -400,6 +402,9 @@ void CL_ShutdownCGame( void ) {
 	if ( !cgvm.entryPoint) {
 		return;
 	}
+
+	SpeedrunPauseTimer();
+
 	VM_Call( CG_SHUTDOWN );
 #ifndef _XBOX	// Not using it
 	RM_ShutdownTerrain();
@@ -1011,6 +1016,15 @@ Ghoul2 Insert End
 		}
 		return strlen(text);
 		//break;
+	case CG_SPEEDRUN_PAUSE_TIMER:
+		SpeedrunPauseTimer();
+		break;
+	case CG_SPEEDRUN_UNPAUSE_TIMER:
+		SpeedrunUnpauseTimer();
+		break;
+	case CG_SPEEDRUN_LEVEL_FINISHED:
+		SpeedrunLevelFinished();
+		break;
 	default:
 		Com_Error( ERR_DROP, "Bad cgame system trap: %i", args[0] );
 	}

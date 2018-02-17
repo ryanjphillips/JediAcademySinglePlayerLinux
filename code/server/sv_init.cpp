@@ -17,6 +17,8 @@ Ghoul2 Insert Start
 	#include "../qcommon/miniheap.h"
 #endif
 
+#include "../speedrun/Timer.h"
+
 void CM_CleanLeafCache(void);
 extern void SV_FreeClient(client_t*);
 
@@ -233,6 +235,8 @@ clients along with it.
 */
 void SV_SpawnServer( char *server, ForceReload_e eForceReload, qboolean bAllowScreenDissolve )
 {
+	SpeedrunPauseTimer();
+
 	int			i;
 	int			checksum;
 
@@ -554,6 +558,8 @@ void SV_Shutdown( char *finalmsg ) {
 	if ( !com_sv_running || !com_sv_running->integer ) {
 		return;
 	}
+
+	SpeedrunPauseTimer();
 
 	//Com_Printf( "----- Server Shutdown -----\n" );
 

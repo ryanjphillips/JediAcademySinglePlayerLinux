@@ -1230,4 +1230,8 @@ void CG_PlayEffectIDOnEnt( const int fxID, const int clientNum, vec3_t origin, c
 void CG_PlayEffect( const char *fxName, vec3_t origin, const vec3_t fwd );
 void CG_PlayEffectID( const int fxID, vec3_t origin, const vec3_t fwd );
 
+void cgi_SpeedrunPauseTimer(void);
+void cgi_SpeedrunUnpauseTimer(void);
+void cgi_SpeedrunLevelFinished(void);
+
 #endif	//__CG_LOCAL_H__

@@ -9,6 +9,7 @@
 #include "..\game\g_items.h"
 #include "..\game\statindex.h"
 
+#include "..\speedrun\Timer.h"
 
 /*
 ===============================================================================
@@ -254,6 +255,7 @@ static void SV_Map_f( void )
 
 	if (SV_Map_( eForceReload ))
 	{
+		SpeedrunResetTimer();
 		// set the cheat value
 		// if the level was started with "map <levelname>", then
 		// cheats will not be allowed.  If started with "devmap <levelname>"

@@ -644,3 +644,18 @@ int cgi_EndGame(void)
 {
 	return syscall( CG_SENDCONSOLECOMMAND, "cam_disable; disconnect\n" );//; cinematic outcast
 }
+
+void cgi_SpeedrunPauseTimer(void)
+{
+	syscall(CG_SPEEDRUN_PAUSE_TIMER);
+}
+
+void cgi_SpeedrunUnpauseTimer(void)
+{
+	syscall(CG_SPEEDRUN_UNPAUSE_TIMER);
+}
+
+void cgi_SpeedrunLevelFinished(void)
+{
+	syscall(CG_SPEEDRUN_LEVEL_FINISHED);
+}

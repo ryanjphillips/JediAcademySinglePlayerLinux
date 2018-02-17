@@ -31,6 +31,8 @@ extern stringID_table_t animTable [MAX_ANIMATIONS+1];
 #define filepathlength 120
 #endif
 
+#include "../speedrun/Timer.h"
+
 extern qboolean ItemParse_model_g2anim_go( itemDef_t *item, const char *animName );
 extern qboolean ItemParse_asset_model_go( itemDef_t *item, const char *name );
 extern qboolean ItemParse_model_g2skin_go( itemDef_t *item, const char *skinName );
@@ -2809,6 +2811,8 @@ UI_LoadMenus
 */
 void UI_LoadMenus(const char *menuFile, qboolean reset) 
 {
+	bool const was_paused = SpeedrunPauseTimer();
+
 //	pc_token_t token;
 //	int handle;
 	int start;
@@ -2877,6 +2881,11 @@ void UI_LoadMenus(const char *menuFile, qboolean reset)
 	//Com_Printf("UI menu load time = %d milli seconds\n", Sys_Milliseconds() - start);
 
 	ui.FS_FreeFile( buffer );	//let go of the buffer
+
+	if (!was_paused)
+	{
+		SpeedrunUnpauseTimer();
+	}
 }
 
 /*
