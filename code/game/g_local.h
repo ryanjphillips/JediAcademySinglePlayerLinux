@@ -241,6 +241,7 @@ extern	cvar_t	*g_fixSpinGlitch;
 extern	cvar_t  *g_disableCrouchBoosts;
 extern	cvar_t  *g_disableRandomBoosts;
 extern	cvar_t	*g_stickLandings;
+extern	cvar_t	*g_selfKnockback;
 
 extern gentity_t *player;
 //

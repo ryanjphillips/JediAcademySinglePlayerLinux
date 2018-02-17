@@ -202,6 +202,7 @@ cvar_t	*g_fixSpinGlitch;
 cvar_t	*g_disableCrouchBoosts;
 cvar_t	*g_disableRandomBoosts;
 cvar_t	*g_stickLandings;
+cvar_t	*g_selfKnockback;
 
 qboolean	stop_icarus = qfalse;
 
@@ -681,6 +682,7 @@ void G_InitCvars( void ) {
 	g_disableCrouchBoosts = gi.cvar( "g_disableCrouchBoosts", "0", 0 );
 	g_disableRandomBoosts = gi.cvar( "g_disableRandomBoosts", "0", 0 );
 	g_stickLandings = gi.cvar( "g_stickLandings", "1", CVAR_CHEAT );
+	g_selfKnockback = gi.cvar( "g_selfKnockback", "0", CVAR_CHEAT );
 
 	gi.cvar( "tier_storyinfo", "0", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
 	gi.cvar( "tiers_complete", "", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
