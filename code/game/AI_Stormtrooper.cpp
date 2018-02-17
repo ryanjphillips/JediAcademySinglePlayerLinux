@@ -927,7 +927,7 @@ static qboolean NPC_ST_InvestigateEvent( int eventID, bool extraSuspicious )
 			trace_t	trace;
 			VectorCopy( NPCInfo->investigateGoal, end );
 			end[2] -= 512;//FIXME: not always right?  What if it's even higher, somehow?
-			gi.trace( &trace, NPCInfo->investigateGoal, NPC->mins, NPC->maxs, end, ENTITYNUM_NONE, ((NPC->clipmask&~CONTENTS_BODY)|CONTENTS_BOTCLIP) );
+			gi.trace( &trace, NPCInfo->investigateGoal, NPC->mins, NPC->maxs, end, ENTITYNUM_NONE, ((NPC->clipmask&~CONTENTS_BODY)|CONTENTS_BOTCLIP), (EG2_Collision)0, 0 );
 			if ( trace.fraction >= 1.0f )
 			{//too high to even bother
 				//FIXME: look at them???
@@ -1185,7 +1185,7 @@ void NPC_BSST_Patrol( void )
 		AngleVectors( NPC->client->renderInfo.eyeAngles, eyeFwd, NULL, NULL );
 		VectorMA( NPC->client->renderInfo.eyePoint, NPCInfo->stats.visrange, eyeFwd, end ); 
 		//get server-side trace impact point
-		gi.trace( &trace, NPC->client->renderInfo.eyePoint, mins, maxs, end, NPC->s.number, MASK_OPAQUE|CONTENTS_BODY|CONTENTS_CORPSE );
+		gi.trace( &trace, NPC->client->renderInfo.eyePoint, mins, maxs, end, NPC->s.number, MASK_OPAQUE|CONTENTS_BODY|CONTENTS_CORPSE, (EG2_Collision)0, 0 );
 		NPC->speed = (trace.fraction*NPCInfo->stats.visrange);
 		if ( NPCInfo->scriptFlags&SCF_LOOK_FOR_ENEMIES )
 		{
@@ -1527,7 +1527,7 @@ static void ST_CheckFireState( void )
 					vec3_t	forward, end;
 					AngleVectors( NPC->client->ps.viewangles, forward, NULL, NULL );
 					VectorMA( muzzle, 8192, forward, end );
-					gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT );
+					gi.trace( &tr, muzzle, vec3_origin, vec3_origin, end, NPC->s.number, MASK_SHOT, (EG2_Collision)0, 0 );
 					VectorCopy( tr.endpos, impactPos );
 				}
 
