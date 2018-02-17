@@ -3604,6 +3604,11 @@ int PM_GetLandingAnim( void )
 
 	if ( PM_SpinningAnim( anim ) || PM_SaberInSpecialAttack( anim ) )
 	{
+		if ( g_fixSpinGlitch->integer ) {
+			//stick landings some
+			pm->ps->velocity[0] *= 0.5f;
+			pm->ps->velocity[1] *= 0.5f;
+		}
 		return -1;
 	}
 	switch ( anim )

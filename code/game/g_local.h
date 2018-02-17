@@ -236,6 +236,9 @@ extern	cvar_t	*g_ICARUSDebug;
 
 extern cvar_t	*g_npcdebug;
 
+// New additions for Speed-Academy
+extern	cvar_t	*g_fixSpinGlitch;
+
 extern gentity_t *player;
 //
 // g_spawn.c

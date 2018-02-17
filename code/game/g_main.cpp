@@ -197,6 +197,9 @@ cvar_t	*g_navSafetyChecks;
 
 cvar_t	*g_broadsword;
 
+// New additions for Speed-Academy
+cvar_t	*g_fixSpinGlitch;
+
 qboolean	stop_icarus = qfalse;
 
 extern char *G_GetLocationForEnt( gentity_t *ent );
@@ -670,6 +673,8 @@ void G_InitCvars( void ) {
 	g_saberDarkSideSaberColor = gi.cvar( "g_saberDarkSideSaberColor", "0", CVAR_ARCHIVE );	//when you turn evil, it turns your saber red!
 
 	g_broadsword = gi.cvar( "broadsword", "1", 0);
+
+	g_fixSpinGlitch = gi.cvar( "g_fixSpinGlitch", "0", 0 );
 
 	gi.cvar( "tier_storyinfo", "0", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
 	gi.cvar( "tiers_complete", "", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);
