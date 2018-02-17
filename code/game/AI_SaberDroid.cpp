@@ -20,7 +20,7 @@ qboolean NPC_CheckPlayerTeamStealth( void );
 static qboolean enemyLOS;
 static qboolean enemyCS;
 static qboolean faceEnemy;
-static qboolean move;
+static qboolean doMove;
 static qboolean shoot;
 static float	enemyDist;
 
@@ -311,7 +311,7 @@ void NPC_BSSaberDroid_Attack( void )
 	}
 
 	enemyLOS = enemyCS = qfalse;
-	move = qtrue;
+	doMove = qtrue;
 	faceEnemy = qfalse;
 	shoot = qfalse;
 	enemyDist = DistanceSquared( NPC->enemy->currentOrigin, NPC->currentOrigin );
@@ -343,27 +343,27 @@ void NPC_BSSaberDroid_Attack( void )
 
 	if ( !TIMER_Done( NPC, "taunting" ) )
 	{
-		move = qfalse;
+		doMove = qfalse;
 	}
 	else if ( enemyCS )
 	{
 		shoot = qtrue;
 		if ( enemyDist < (NPC->maxs[0]+NPC->enemy->maxs[0]+32)*(NPC->maxs[0]+NPC->enemy->maxs[0]+32) )
 		{//close enough
-			move = qfalse;
+			doMove = qfalse;
 		}
 	}//this should make him chase enemy when out of range...?
 
 	if ( NPC->client->ps.legsAnimTimer 
 		&& NPC->client->ps.legsAnim != BOTH_A3__L__R )//this one is a running attack
 	{//in the middle of a held, stationary anim, can't move
-		move = qfalse;
+		doMove = qfalse;
 	}
 
-	if ( move )
+	if ( doMove )
 	{//move toward goal
-		move = SaberDroid_Move();
-		if ( move )
+		doMove = SaberDroid_Move();
+		if ( doMove )
 		{//if we had to chase him, be sure to attack as soon as possible
 			TIMER_Set( NPC, "attackDelay", NPC->client->ps.weaponTime );
 		}
@@ -371,7 +371,7 @@ void NPC_BSSaberDroid_Attack( void )
 
 	if ( !faceEnemy )
 	{//we want to face in the dir we're running
-		if ( move )
+		if ( doMove )
 		{//don't run away and shoot
 			NPCInfo->desiredYaw = NPCInfo->lastPathAngles[YAW];
 			NPCInfo->desiredPitch = 0;

@@ -35,7 +35,7 @@ qboolean NPC_CheckPlayerTeamStealth( void );
 static qboolean enemyLOS;
 static qboolean enemyCS;
 static qboolean faceEnemy;
-static qboolean move;
+static qboolean doMove;
 static qboolean shoot;
 static float	enemyDist;
 

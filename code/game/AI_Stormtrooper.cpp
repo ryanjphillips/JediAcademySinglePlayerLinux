@@ -55,7 +55,7 @@ static qboolean enemyCS;
 static qboolean enemyInFOV;
 static qboolean hitAlly;
 static qboolean faceEnemy;
-static qboolean move;
+static qboolean doMove;
 static qboolean shoot;
 static float	enemyDist;
 static vec3_t	impactPos;
@@ -1373,7 +1373,7 @@ static void ST_CheckMoveState( void )
 {
 	if ( Q3_TaskIDPending( NPC, TID_MOVE_NAV ) )
 	{//moving toward a goal that a script is waiting on, so don't stop for anything!
-		move = qtrue;
+		doMove = qtrue;
 	}
 	else if ( NPC->client->NPC_class == CLASS_ROCKETTROOPER
 		&& NPC->client->ps.groundEntityNum == ENTITYNUM_NONE )
@@ -1382,7 +1382,7 @@ static void ST_CheckMoveState( void )
 	}
 //	else if ( NPC->NPC->scriptFlags&SCF_NO_GROUPS )
 	{
-		move = qtrue;
+		doMove = qtrue;
 	}
 	//See if we're a scout
 
@@ -2335,7 +2335,7 @@ void NPC_BSST_Attack( void )
 
 
 	enemyLOS = enemyCS = enemyInFOV = qfalse;
-	move = qtrue;
+	doMove = qtrue;
 	faceEnemy = qfalse;
 	shoot = qfalse;
 	hitAlly = qfalse;
@@ -2473,7 +2473,7 @@ void NPC_BSST_Attack( void )
 	{//not supposed to chase my enemies
 		if ( NPCInfo->goalEntity == NPC->enemy )
 		{//goal is my entity, so don't move
-			move = qfalse;
+			doMove = qfalse;
 		}
 	}
 	else if (NPC->NPC->scriptFlags&SCF_NO_GROUPS)
@@ -2485,7 +2485,7 @@ void NPC_BSST_Attack( void )
 
 	if ( NPC->client->fireDelay && NPC->s.weapon == WP_ROCKET_LAUNCHER )
 	{
-		move = qfalse;
+		doMove = qfalse;
 	}
 
 	if ( !ucmd.rightmove )
@@ -2505,7 +2505,7 @@ void NPC_BSST_Attack( void )
 				ucmd.rightmove = -127;
 				//re-check the duck as we might want to be rolling
 				VectorClear( NPC->client->ps.moveDir );
-				move = qfalse;
+				doMove = qfalse;
 			}
 		}
 		else if ( !TIMER_Done( NPC, "strafeRight" ) )
@@ -2518,20 +2518,20 @@ void NPC_BSST_Attack( void )
 			{//go ahead and strafe left
 				ucmd.rightmove = 127;
 				VectorClear( NPC->client->ps.moveDir );
-				move = qfalse;
+				doMove = qfalse;
 			}
 		}
 	}
 
 	if ( NPC->client->ps.legsAnim == BOTH_GUARD_LOOKAROUND1 )
 	{//don't move when doing silly look around thing
-		move = qfalse;
+		doMove = qfalse;
 	}
-	if ( move )
+	if ( doMove )
 	{//move toward goal
 		if ( NPCInfo->goalEntity )//&& ( NPCInfo->goalEntity != NPC->enemy || enemyDist > 10000 ) )//100 squared
 		{
-			move = ST_Move();
+			doMove = ST_Move();
 			if ( (NPC->client->NPC_class != CLASS_ROCKETTROOPER||NPC->s.weapon!=WP_ROCKET_LAUNCHER||enemyDist<MIN_ROCKET_DIST_SQUARED)//rockettroopers who use rocket launchers turn around and run if you get too close (closer than 128)
 				&& ucmd.forwardmove <= -32 )
 			{//moving backwards at least 45 degrees
@@ -2558,11 +2558,11 @@ void NPC_BSST_Attack( void )
 		}
 		else
 		{
-			move = qfalse;
+			doMove = qfalse;
 		}
 	}
 
-	if ( !move )
+	if ( !doMove )
 	{
 		if (NPC->client->NPC_class != CLASS_ASSASSIN_DROID)
 		{
@@ -2587,7 +2587,7 @@ void NPC_BSST_Attack( void )
 	}
 
 	if ( //!TIMER_Done( NPC, "flee" ) ||
-		(move&&!TIMER_Done( NPC, "runBackwardsDebounce" )) )
+		(doMove&&!TIMER_Done( NPC, "runBackwardsDebounce" )) )
 	{//running away
 		faceEnemy = qfalse;
 	}
@@ -2596,14 +2596,14 @@ void NPC_BSST_Attack( void )
 
 	if ( !faceEnemy )
 	{//we want to face in the dir we're running
-		if ( !move )
+		if ( !doMove )
 		{//if we haven't moved, we should look in the direction we last looked?
 			VectorCopy( NPC->client->ps.viewangles, NPCInfo->lastPathAngles );
 		}
 		NPCInfo->desiredYaw = NPCInfo->lastPathAngles[YAW];
 		NPCInfo->desiredPitch = 0;
 		NPC_UpdateAngles( qtrue, qtrue );
-		if ( move )
+		if ( doMove )
 		{//don't run away and shoot
 			shoot = qfalse;
 		}
@@ -2657,7 +2657,7 @@ void NPC_BSST_Attack( void )
 			if ( NPC->s.weapon == WP_ROCKET_LAUNCHER )
 			{
 				if ( (ucmd.buttons&BUTTON_ATTACK) 
-					&& !move
+					&& !doMove
 					&& g_spskill->integer > 1 
 					&& !Q_irand( 0, 3 ) )
 				{//every now and then, shoot a homing rocket
