@@ -13,6 +13,7 @@
 #include "../ff/ff.h"
 #endif // _IMMERSION
 #include "../qcommon/sstring.h"
+#include "../speedrun/PlayerOverbouncePrediction.hpp"
 //NOTENOTE: Be sure to change the mirrored code in g_shared.h
 typedef	map< sstring_t, unsigned char, less<sstring_t>, allocator< unsigned char >  >	namePrecache_m;
 extern namePrecache_m	*as_preCacheMap;
@@ -324,6 +325,7 @@ vmCvar_t	cg_debugHealthBars;
 vmCvar_t	cg_drawSpeedrunTotalTimer;
 vmCvar_t	cg_drawSpeedrunLevelTimer;
 vmCvar_t	cg_drawMovementRestriction;
+vmCvar_t	cg_drawOverbounceInfo;
 
 typedef struct {
 	vmCvar_t	*vmCvar;
@@ -433,9 +435,11 @@ static cvarTable_t cvarTable[] = {
 	{ &fx_expensivePhysics, "fx_expensivePhysics", "1", CVAR_ARCHIVE },
 	{ &cg_debugHealthBars,	"cg_debugHealthBars",	"0", CVAR_CHEAT },
 	
+	// Additions for Speed Academy
 	{ &cg_drawSpeedrunTotalTimer, "cg_drawSpeedrunTotalTimer", "0", CVAR_ARCHIVE  },
 	{ &cg_drawSpeedrunLevelTimer, "cg_drawSpeedrunLevelTimer", "0", CVAR_ARCHIVE  },
 	{ &cg_drawMovementRestriction, "cg_drawMovementRestriction", "0", CVAR_ARCHIVE },
+	{ &cg_drawOverbounceInfo, "cg_drawOverbounceInfo", "0", CVAR_ARCHIVE },
 };
 
 static int cvarTableSize = sizeof( cvarTable ) / sizeof( cvarTable[0] );
@@ -2353,6 +2357,7 @@ void CG_Shutdown( void )
 	cgi_SpeedrunPauseTimer();
 	in_camera = false;
 	FX_Free();
+	playerOverbouncePredictor.reset();
 }
 
 //// DEBUG STUFF

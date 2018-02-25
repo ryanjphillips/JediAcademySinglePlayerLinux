@@ -635,6 +635,7 @@ extern	vmCvar_t		cg_smoothPlayerPlatAccel;
 extern	vmCvar_t		cg_drawSpeedrunTotalTimer;
 extern	vmCvar_t		cg_drawSpeedrunLevelTimer;
 extern	vmCvar_t		cg_drawMovementRestriction;
+extern	vmCvar_t		cg_drawOverbounceInfo;
 
 void CG_NewClientinfo( int clientNum );
 //
