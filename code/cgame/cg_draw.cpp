@@ -3310,11 +3310,13 @@ static float CG_DrawMovementRestriction(float y) {
 	extern cvar_t *g_fixSpinGlitch;
 	extern cvar_t *g_disableCrouchBoosts;
 
-	std::string restriction_string = "EB";
-	if ( !g_fixSpinGlitch->integer ) {
-		restriction_string = "SG";
-	} else if ( !g_disableCrouchBoosts->integer ) {
+	std::string restriction_string = "--";
+	if ( g_fixSpinGlitch->integer && g_disableCrouchBoosts->integer ) {
+		restriction_string = "EB";
+	} else if ( g_fixSpinGlitch->integer ) {
 		restriction_string = "CB";
+	} else if ( g_disableCrouchBoosts->integer ) {
+		restriction_string = "SG";
 	}
 
 	int const width = cgi_R_Font_StrLenPixels(restriction_string.c_str(), cgs.media.qhFontMedium, 1.0f);
