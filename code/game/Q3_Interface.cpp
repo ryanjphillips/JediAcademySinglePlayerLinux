@@ -4787,6 +4787,12 @@ static void Q3_SetCinematicSkipScript( char *scriptname )
 	}
 	else
 	{
+		if (strcmp(scriptname, "kor2/endgame_ds_3_skip") == 0 ||
+		    strcmp(scriptname, "kor2/endgame_ls_4_skip") == 0)
+		{
+			cgi_SpeedrunPauseTimer();
+			cgi_SpeedrunLevelFinished();
+		}
 		Q_strncpyz(cinematicSkipScript,scriptname,sizeof(cinematicSkipScript));
 	}
 
