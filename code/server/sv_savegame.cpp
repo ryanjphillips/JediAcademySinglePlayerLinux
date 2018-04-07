@@ -569,7 +569,8 @@ void SV_LoadGame_f(void)
 	}
 #endif
 
-	if (strncmp("auto_", psFilename, strlen("auto_")) == 0)
+	if ((sv_speedrunModeIL->integer && strncmp("auto_", psFilename, strlen("auto_")) == 0) ||
+	    strcmp("auto_yavin1b", psFilename) == 0)
 	{
 		SpeedrunResetTimer();
 	}

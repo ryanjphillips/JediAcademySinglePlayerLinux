@@ -168,6 +168,9 @@ extern	cvar_t	*sv_serverid;
 extern  cvar_t	*sv_testsave;
 extern  cvar_t	*sv_compress_saved_games;
 
+// Additions for Speed Academy
+extern	cvar_t	*sv_speedrunModeIL;
+
 //===========================================================
 
 //
