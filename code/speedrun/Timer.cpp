@@ -33,8 +33,11 @@ void SpeedrunUpdateTimer()
 
 void SpeedrunUnpauseTimer()
 {
-	paused = false;
-	last_timestamp = Sys_Milliseconds();
+	if (paused)
+	{
+		paused = false;
+		last_timestamp = Sys_Milliseconds();
+	}
 }
 
 void SpeedrunStoreCurrentTime()
