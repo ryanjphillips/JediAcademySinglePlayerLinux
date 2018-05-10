@@ -3309,9 +3309,12 @@ CG_DrawMovementRestriction
 static float CG_DrawMovementRestriction(float y) {
 	extern cvar_t *g_fixSpinGlitch;
 	extern cvar_t *g_disableCrouchBoosts;
+	extern cvar_t *g_stickLandings;
 
 	std::string restriction_string = "--";
-	if ( g_fixSpinGlitch->integer && g_disableCrouchBoosts->integer ) {
+	if ( !g_stickLandings->integer ) {
+		restriction_string = "JO";
+	} else if ( g_fixSpinGlitch->integer && g_disableCrouchBoosts->integer ) {
 		restriction_string = "EB";
 	} else if ( g_fixSpinGlitch->integer ) {
 		restriction_string = "CB";
