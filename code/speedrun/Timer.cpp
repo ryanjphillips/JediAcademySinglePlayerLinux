@@ -5,9 +5,11 @@
 int last_timestamp = 0;
 int stored_total_time = 0;
 int stored_level_time = 0;
-volatile int current_total_time = 0;
-volatile int current_level_time = 0;
-volatile bool is_run_finished = false;
+struct ExternVisibleInfo {
+	int current_total_time = 0;
+	int current_level_time = 0;
+	bool is_run_finished = false;
+} volatile info;
 bool paused = true;
 
 void SpeedrunResetTimer()
@@ -15,9 +17,9 @@ void SpeedrunResetTimer()
 	last_timestamp = 0;
 	stored_total_time = 0;
 	stored_level_time = 0;
-	current_total_time = 0;
-	current_level_time = 0;
-	is_run_finished = false;
+	info.current_total_time = 0;
+	info.current_level_time = 0;
+	info.is_run_finished = false;
 	paused = true;
 }
 
@@ -29,8 +31,8 @@ void SpeedrunUpdateTimer()
 	}
 	
 	int const current_timestamp = Sys_Milliseconds();
-	current_total_time = stored_total_time + (current_timestamp - last_timestamp);
-	current_level_time = stored_level_time + (current_timestamp - last_timestamp);
+	info.current_total_time = stored_total_time + (current_timestamp - last_timestamp);
+	info.current_level_time = stored_level_time + (current_timestamp - last_timestamp);
 }
 
 void SpeedrunUnpauseTimer()
@@ -47,8 +49,8 @@ void SpeedrunStoreCurrentTime()
 	int const current_timestamp = Sys_Milliseconds();
 	stored_total_time += (current_timestamp - last_timestamp);
 	stored_level_time += (current_timestamp - last_timestamp);
-	current_total_time = stored_total_time;
-	current_level_time = stored_level_time;
+	info.current_total_time = stored_total_time;
+	info.current_level_time = stored_level_time;
 	last_timestamp = current_timestamp;
 }
 
@@ -72,14 +74,14 @@ void SpeedrunLevelFinished()
 	}
 
 	constexpr int PRINT_ACCURACY = 3;
-	std::string time_string = GetTimeStringFromMilliseconds(current_level_time,
+	std::string time_string = GetTimeStringFromMilliseconds(info.current_level_time,
 	                                                        PRINT_ACCURACY);
 	Com_Printf(S_COLOR_RED "=========================\n"
 	           S_COLOR_GREEN "Level time: " S_COLOR_WHITE "%s\n",
 			   time_string.c_str());
-	if (current_level_time != current_total_time)
+	if (info.current_level_time != info.current_total_time)
 	{
-		time_string = GetTimeStringFromMilliseconds(current_total_time,
+		time_string = GetTimeStringFromMilliseconds(info.current_total_time,
 		                                            PRINT_ACCURACY);
 		Com_Printf(S_COLOR_GREEN "Total time: " S_COLOR_WHITE "%s\n",
 		           time_string.c_str());
@@ -93,15 +95,15 @@ void SpeedrunRunFinished()
 {
 	SpeedrunPauseTimer();
 	SpeedrunLevelFinished();
-	is_run_finished = true;
+	info.is_run_finished = true;
 }
 
 int SpeedrunGetTotalTimeMilliseconds()
 {
-	return current_total_time;
+	return info.current_total_time;
 }
 
 int SpeedrunGetLevelTimeMilliseconds()
 {
-	return current_level_time;
+	return info.current_level_time;
 }
