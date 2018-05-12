@@ -1245,6 +1245,7 @@ void CG_PlayEffectID( const int fxID, vec3_t origin, const vec3_t fwd );
 void cgi_SpeedrunPauseTimer(void);
 void cgi_SpeedrunUnpauseTimer(void);
 void cgi_SpeedrunLevelFinished(void);
+void cgi_SpeedrunRunFinished(void);
 int cgi_SpeedrunGetTotalTimeMilliseconds(void);
 int cgi_SpeedrunGetLevelTimeMilliseconds(void);
 

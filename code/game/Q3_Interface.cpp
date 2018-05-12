@@ -4791,8 +4791,7 @@ static void Q3_SetCinematicSkipScript( char *scriptname )
 		    strcmp(scriptname, "kor2/endgame_ls_4_skip") == 0)
 		{
 			// Hack for stopping the timer on end of game
-			cgi_SpeedrunPauseTimer();
-			cgi_SpeedrunLevelFinished();
+			cgi_SpeedrunRunFinished();
 		}
 		Q_strncpyz(cinematicSkipScript,scriptname,sizeof(cinematicSkipScript));
 	}

@@ -7,6 +7,7 @@ int stored_total_time = 0;
 int stored_level_time = 0;
 volatile int current_total_time = 0;
 volatile int current_level_time = 0;
+volatile bool is_run_finished = false;
 bool paused = true;
 
 void SpeedrunResetTimer()
@@ -16,6 +17,7 @@ void SpeedrunResetTimer()
 	stored_level_time = 0;
 	current_total_time = 0;
 	current_level_time = 0;
+	is_run_finished = false;
 	paused = true;
 }
 
@@ -85,6 +87,13 @@ void SpeedrunLevelFinished()
 	Com_Printf(S_COLOR_RED "=========================\n");
 
 	stored_level_time = 0;
+}
+
+void SpeedrunRunFinished()
+{
+	SpeedrunPauseTimer();
+	SpeedrunLevelFinished();
+	is_run_finished = true;
 }
 
 int SpeedrunGetTotalTimeMilliseconds()

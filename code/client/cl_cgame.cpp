@@ -1025,6 +1025,9 @@ Ghoul2 Insert End
 	case CG_SPEEDRUN_LEVEL_FINISHED:
 		SpeedrunLevelFinished();
 		break;
+	case CG_SPEEDRUN_RUN_FINISHED:
+		SpeedrunRunFinished();
+		break;
 	case CG_SPEEDRUN_GET_TOTAL_TIME_MILLISECONDS:
 		return SpeedrunGetTotalTimeMilliseconds();
 	case CG_SPEEDRUN_GET_LEVEL_TIME_MILLISECONDS:
