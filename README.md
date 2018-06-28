@@ -4,6 +4,7 @@ Speed Academy
 Source port of the singleplayer of Star Wars Jedi Knight: Jedi Academy. Focuses on staying true to the original game, possibly for speedrun purposes. Based on the original source code released by Raven, see README.txt
 
 New console variables:
+```
 // cg_
 cg_drawMovementRestriction  (0-1) default:"0" Draw the current movement restriction. -- represents no restrictions.
 cg_drawOverbounceInfo       (0-1) default:"0" Draw overbounce probabilities, G is for Go, J is for Jump
@@ -25,3 +26,4 @@ g_selfKnockback             (0-1) default:"0" Disable the self knockback restric
 
 // sv_ 
 sv_speedrunModeIL           (0-1) default:"0" Individual-level run mode. When set to 1, timer will reset every time an autosave is loaded. When set to 0, timer will reset only when yavin1b is loaded.
+```
