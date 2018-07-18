@@ -712,6 +712,10 @@ CG_LoadingString
 ======================
 */
 void CG_LoadingString( const char *s ) {
+	assert(strlen(s) > 0);
+	// If s was empty, cg.infoScreenText would be empty and hence, instead of
+	// the simple call to "CG_DrawInformation" in "CG_DrawActiveFrame", the real
+	// scene will be attempted to be drawn, which is not the intention here.
 	Q_strncpyz( cg.infoScreenText, s, sizeof( cg.infoScreenText ) );
 	cgi_UpdateScreen();
 }
@@ -955,7 +959,9 @@ static void CG_RegisterForces( void )
 		if ( forceName[0] == '*' ) {
 			continue;	// custom force???
 		}
-		if (!(i&7)) {
+		if (!(i&7) && forceName[0] != '\0') {
+			// For some reason the forceName is sometimes empty, which causes
+			// problems for CG_LoadingString, so dont print such forceNames
 			CG_LoadingString( forceName );
 		}
 
