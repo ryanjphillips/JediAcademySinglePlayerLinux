@@ -6753,6 +6753,17 @@ static void Q3_RemoveEnt( gentity_t *victim )
 				pVeh->m_pVehicleInfo->EjectAll( pVeh );
 			}
 		}
+		if ( victim->owner && victim->owner->client &&
+			 victim->owner->client->NPC_class == CLASS_VEHICLE )
+		{
+			// eject the entity out of its vehicle before removing it,
+			// otherwise the vehicle will think it still exists
+			Vehicle_t *pVeh = victim->owner->m_pVehicle;
+			if ( pVeh && pVeh->m_pVehicleInfo )
+			{
+				pVeh->m_pVehicleInfo->Eject( pVeh, victim, qtrue );
+			}
+		}
 		//ClientDisconnect(ent);
 		victim->s.eFlags |= EF_NODRAW;
 		victim->svFlags &= ~SVF_NPC;
