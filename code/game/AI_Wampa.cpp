@@ -106,7 +106,8 @@ void Wampa_Move( qboolean visible )
 		NPCInfo->goalEntity = NPC->enemy;
 
 		trace_t	trace;
-		if ( !NAV_CheckAhead( NPC, NPCInfo->goalEntity->currentOrigin, trace, (NPC->clipmask|CONTENTS_BOTCLIP) ) )
+		if ( NPCInfo->goalEntity != NULL &&
+			 !NAV_CheckAhead( NPC, NPCInfo->goalEntity->currentOrigin, trace, (NPC->clipmask|CONTENTS_BOTCLIP) ) )
 		{
 			if ( !NPC_MoveToGoal( qfalse ) )
 			{
