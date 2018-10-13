@@ -23,7 +23,7 @@
 #include "wp_saber.h"
 #include "g_vehicles.h"
 #include "../speedrun/overbounce_prediction/OverbouncePrediction.hpp"
-#include "../speedrun/strafe_helper/StrafeHelper.hpp"
+#include "../speedrun/strafe_helper/strafe_helper.h"
 #include <float.h>
 
 #ifdef _XBOX
@@ -720,8 +720,8 @@ static void PM_Accelerate( vec3_t wishdir, float wishspeed, float accel )
 	float		addspeed, accelspeed, currentspeed;
 
 	if (pm->ps->clientNum == 0) {
-		StrafeHelper::setAccelerationValues(pml.forward, pm->ps->velocity, wishdir,
-		                                    wishspeed, accel, pml.frametime);
+		StrafeHelper_SetAccelerationValues(pml.forward, pm->ps->velocity, wishdir,
+		                                   wishspeed, accel, pml.frametime);
 	}
 
 	currentspeed = DotProduct (pm->ps->velocity, wishdir);

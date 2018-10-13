@@ -9,7 +9,7 @@
 #include "..\game\objectives.h"
 #include "..\game\g_vehicles.h"
 #include "..\speedrun\PlayerOverbouncePrediction.hpp"
-#include "..\speedrun\strafe_helper\StrafeHelper.hpp"
+#include "..\speedrun\strafe_helper\strafe_helper.h"
 
 #ifdef _XBOX
 #include "../client/fffx.h"
@@ -3818,9 +3818,13 @@ CG_DrawStrafeHelper
 ====================
 */
 static void CG_DrawStrafeHelper( void ) {
-	StrafeHelper::setScale(cg_strafeHelperScale.value);
-	StrafeHelper::draw(cg_strafeHelperCenter.integer, cg_strafeHelperCenterMarker.integer,
-	                   cg_strafeHelperHeight.value, cg_strafeHelperY.value);
+	StrafeHelperParams params;
+	params.center = cg_strafeHelperCenter.integer;
+	params.center_marker = cg_strafeHelperCenterMarker.integer;
+	params.scale = cg_strafeHelperScale.value;
+	params.height = cg_strafeHelperHeight.value;
+	params.y = cg_strafeHelperY.value;
+	StrafeHelper_Draw(&params, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 /*
