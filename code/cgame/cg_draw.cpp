@@ -14,6 +14,7 @@
 #ifdef _XBOX
 #include "../client/fffx.h"
 #endif
+#include <cmath>
 
 extern vmCvar_t	cg_debugHealthBars;
 

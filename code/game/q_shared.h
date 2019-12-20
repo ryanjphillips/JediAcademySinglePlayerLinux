@@ -46,6 +46,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h>
+#include <string>
 
 #ifdef _XBOX
 #define tvector(T) std::vector< T >
