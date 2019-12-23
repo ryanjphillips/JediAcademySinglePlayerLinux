@@ -10,6 +10,7 @@
 #include "..\game\g_vehicles.h"
 #include "..\speedrun\PlayerOverbouncePrediction.hpp"
 #include "..\speedrun\strafe_helper\strafe_helper.h"
+#include "..\speedrun\speedrun_timer_q3\timer_helper.h"
 
 #ifdef _XBOX
 #include "../client/fffx.h"

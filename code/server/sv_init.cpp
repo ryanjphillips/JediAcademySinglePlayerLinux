@@ -17,7 +17,7 @@ Ghoul2 Insert Start
 	#include "../qcommon/miniheap.h"
 #endif
 
-#include "../speedrun/Timer.h"
+#include "../speedrun/speedrun_timer_q3/timer.h"
 
 void CM_CleanLeafCache(void);
 extern void SV_FreeClient(client_t*);
@@ -235,10 +235,10 @@ clients along with it.
 */
 void SV_SpawnServer( char *server, ForceReload_e eForceReload, qboolean bAllowScreenDissolve )
 {
-	SpeedrunPauseTimer();
-
 	int			i;
 	int			checksum;
+	
+	SpeedrunPauseTimer();
 
 // The following fixes for potential issues only work on Xbox
 #ifdef _XBOX

@@ -18,6 +18,8 @@
 
 #include "../RMG/RM_Headers.h"
 
+#include "../speedrun/speedrun_timer_q3/timer.h"
+
 #ifdef _XBOX
 #include "../ui/ui_splash.h"
 
@@ -26,8 +28,6 @@
 #endif
 
 #endif
-
-#include "../speedrun/Timer.h"
 
 #define	RETRANSMIT_TIMEOUT	3000	// time between connection packet retransmits
 

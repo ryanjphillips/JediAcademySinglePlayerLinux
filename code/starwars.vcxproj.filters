@@ -78,8 +78,11 @@
     <Filter Include="Ghoul2">
       <UniqueIdentifier>{e38ec8bf-9371-40a9-b914-38a1e9e8bce9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Speedrun">
+    <Filter Include="speedrun">
       <UniqueIdentifier>{dc914319-42e7-454a-8662-4ab75114ad30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="speedrun\speedrun_timer_q3">
+      <UniqueIdentifier>{adebd98a-1fc3-4810-bc0b-5f95d7ead0d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -656,8 +659,11 @@
     <ClCompile Include="ghoul2\G2_surfaces.cpp">
       <Filter>Ghoul2</Filter>
     </ClCompile>
-    <ClCompile Include="speedrun\Timer.cpp">
-      <Filter>Speedrun</Filter>
+    <ClCompile Include="speedrun\speedrun_timer_q3\timer.cpp">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
+    </ClCompile>
+    <ClCompile Include="speedrun\speedrun_timer_q3\timer_helper.cpp">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1249,8 +1255,11 @@
     <ClInclude Include="renderer\mdx_format.h">
       <Filter>Ghoul2</Filter>
     </ClInclude>
-    <ClInclude Include="speedrun\Timer.h">
-      <Filter>Speedrun</Filter>
+    <ClInclude Include="speedrun\speedrun_timer_q3\timer.h">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
+    </ClInclude>
+    <ClInclude Include="speedrun\speedrun_timer_q3\timer_helper.h">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

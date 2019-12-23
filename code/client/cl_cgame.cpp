@@ -30,11 +30,11 @@ Ghoul2 Insert Start
 	#include "../ghoul2/G2.h"
 #endif
 
-#include "../speedrun/Timer.h"
-
 /*
 Ghoul2 Insert End
 */
+
+#include "../speedrun/speedrun_timer_q3/timer.h"
 
 //FIXME: Temp
 extern void S_UpdateAmbientSet ( const char *name, vec3_t origin );

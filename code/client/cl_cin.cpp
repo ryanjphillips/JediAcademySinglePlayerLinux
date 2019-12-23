@@ -21,7 +21,7 @@
 #include "client_ui.h"	// CHC
 #include "snd_local.h"
 
-#include "../speedrun/Timer.h"
+#include "../speedrun/speedrun_timer_q3/timer.h"
 
 #define MAXSIZE				8
 #define MINSIZE				4

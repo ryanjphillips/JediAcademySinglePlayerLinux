@@ -26,12 +26,12 @@ extern stringID_table_t animTable [MAX_ANIMATIONS+1];
 
 #include "../qcommon/stv_version.h"
 
+#include "../speedrun/speedrun_timer_q3/timer.h"
+
 #ifdef _XBOX
 #include <xtl.h>
 #define filepathlength 120
 #endif
-
-#include "../speedrun/Timer.h"
 
 extern qboolean ItemParse_model_g2anim_go( itemDef_t *item, const char *animName );
 extern qboolean ItemParse_asset_model_go( itemDef_t *item, const char *name );

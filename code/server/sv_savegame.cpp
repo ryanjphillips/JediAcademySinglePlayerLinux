@@ -21,7 +21,7 @@ extern byte *Compress_JPG(int *pOutputSize, int quality, int image_width, int im
 #include "..\game\weapons.h"
 #include "..\game\g_items.h"
 
-#include "..\speedrun\Timer.h"
+#include "..\speedrun\speedrun_timer_q3\timer.h"
 
 #ifdef _XBOX
 #include <stdlib.h>

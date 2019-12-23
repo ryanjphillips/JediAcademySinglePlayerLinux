@@ -2706,11 +2706,4 @@ typedef enum
 #include "../ff/ff_public.h"
 #endif // _IMMERSION
 
-/*
-==========================================================
-Additions for Speed-Academy
-==========================================================
-*/
-std::string GetTimeStringFromMilliseconds(int milliseconds, int accuracy);
-
 #endif	// __Q_SHARED_H

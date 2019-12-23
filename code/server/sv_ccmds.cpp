@@ -9,7 +9,7 @@
 #include "..\game\g_items.h"
 #include "..\game\statindex.h"
 
-#include "..\speedrun\Timer.h"
+#include "..\speedrun\speedrun_timer_q3\timer.h"
 
 /*
 ===============================================================================

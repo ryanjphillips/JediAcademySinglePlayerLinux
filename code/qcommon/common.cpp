@@ -14,7 +14,7 @@
 #include "platform.h"
 #endif
 
-#include "../speedrun/Timer.h"
+#include "../speedrun/speedrun_timer_q3/timer.h"
 
 #define	MAXPRINTMSG	4096
 

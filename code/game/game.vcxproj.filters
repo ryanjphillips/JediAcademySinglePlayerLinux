@@ -49,6 +49,9 @@
     <Filter Include="speedrun\strafe_helper">
       <UniqueIdentifier>{f412e46d-d743-4697-98c9-94aa0aae53e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="speedrun\speedrun_timer_q3">
+      <UniqueIdentifier>{1c10f176-a8f6-4cc9-b3aa-a5407c7a0578}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI_Animal.cpp">
@@ -528,6 +531,9 @@
     <ClCompile Include="..\speedrun\strafe_helper_includes.cpp">
       <Filter>speedrun</Filter>
     </ClCompile>
+    <ClCompile Include="..\speedrun\speedrun_timer_q3\timer_helper.cpp">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\win32\game.rc">
@@ -834,6 +840,9 @@
     </ClInclude>
     <ClInclude Include="..\speedrun\strafe_helper_includes.h">
       <Filter>speedrun</Filter>
+    </ClInclude>
+    <ClInclude Include="..\speedrun\speedrun_timer_q3\timer_helper.h">
+      <Filter>speedrun\speedrun_timer_q3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
