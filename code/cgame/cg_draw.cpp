@@ -3826,6 +3826,8 @@ static void CG_DrawStrafeHelper( void ) {
 	params.scale = cg_strafeHelperScale.value;
 	params.height = cg_strafeHelperHeight.value;
 	params.y = cg_strafeHelperY.value;
+	params.speed_scale = cg_strafeHelperSpeedScale.value;
+	params.speed_y = cg_strafeHelperSpeedY.value;
 	StrafeHelper_Draw(&params, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 

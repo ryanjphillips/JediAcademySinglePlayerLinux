@@ -15,6 +15,8 @@ cg_strafeHelperCenter       (0-1) default:"1" Modify the strafe helper.
 cg_strafeHelperCenterMarker (0-1) default:"1" Modify the strafe helper.
 cg_strafeHelperHeight       (#) default:"20"  Modify the strafe helper.
 cg_strafeHelperScale        (#) default:"4"   Modify the strafe helper.
+cg_strafeHelperSpeedScale   (#) default:"0.9" Modify the strafe helper.
+cg_strafeHelperSpeedY       (#) default:"0"   Modify the strafe helper.
 cg_strafeHelperY            (#) default:"50"  Modify the strafe helper.
 
 // g_
