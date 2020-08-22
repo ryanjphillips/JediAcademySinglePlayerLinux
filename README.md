@@ -14,7 +14,7 @@ Based on the original source code released by Raven, see README.txt.
 
 Draw the currently active movement restriction.
 `--` represents no restrictions.
-Default: `0`.
+Default: `1`.
 
 #### `cg_drawOverbounceInfo` (0 or 1)
 
