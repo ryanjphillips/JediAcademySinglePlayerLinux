@@ -80,10 +80,10 @@ BEGIN
         BEGIN
             VALUE "Comments", "Originally: Raven Software"
             VALUE "CompanyName", "Originally: Activision Inc"
-            VALUE "FileDescription", "Source port of the singleplayer of Star Wars Jedi Knight: Jedi Academy"
+            VALUE "FileDescription", "Source port of Jedi Academy SP"
             VALUE "FileVersion",  VERSION_STRING
             VALUE "InternalName", "JASP"
-            VALUE "LegalCopyright", ""
+            VALUE "LegalCopyright", "Originally: Raven Software, Activision Inc"
             VALUE "OriginalFilename", "jasp.exe"
             VALUE "ProductName", "Speed Academy"
             VALUE "ProductVersion",  VERSION_STRING

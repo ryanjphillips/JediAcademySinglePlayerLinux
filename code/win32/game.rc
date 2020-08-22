@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#include "winres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -70,14 +70,14 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "Comments", "Raven Software"
-            VALUE "CompanyName", "Activision Inc"
-            VALUE "FileDescription", "Jedi Academy Game DLL"
+            VALUE "Comments", "Originally: Raven Software"
+            VALUE "CompanyName", "Originally: Activision Inc"
+            VALUE "FileDescription", "Speed Academy Game DLL"
             VALUE "FileVersion", VERSION_STRING
             VALUE "InternalName", "ja game.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2003"
+            VALUE "LegalCopyright", "Originally: Raven Software, Activision Inc"
             VALUE "OriginalFilename", "jagamex86.dll"
-            VALUE "ProductName", "Jedi Knight®: Jedi Academy"
+            VALUE "ProductName", "Speed Academy"
             VALUE "ProductVersion", VERSION_STRING
         END
     END
