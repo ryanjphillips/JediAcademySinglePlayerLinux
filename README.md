@@ -78,28 +78,30 @@ Default: `50.0`.
 
 ### Gameplay
 
-#### `g_stickLandings` (0 or 1)
+#### `g_vrgi` (0 or 1)
 
-Enable or disable the usual slowdown applied when landing ("velocity reduction on ground impact, VRGI").
-Default: 1.
+Enable or disable the "velocity reduction on ground impact" (VRGI).
+This is the usual slowdown when landing on ground that Jedi Academy introduced.
+The "No VRGI" category runs with this being set to `0`.
+Default: `1`.
 
-#### `g_disableCrouchBoosts` (0 or 1)
+#### `g_spinGlitch` (0 or 1)
 
-Disable "crouch boosting".
-VRGI can not be bypassed by crouching anymore.
-Default: `0`.
+Allows to disable "spin glitch".
+When set to `0`, VRGI can not be bypassed by spinning anymore.
+Default: `1`.
 
-#### `g_fixSpinGlitch` (0 or 1)
+#### `g_crouchBoosts` (0 or 1)
 
-Disable "spin glitch".
-VRGI can not be bypassed by spinning anymore.
-Default: `0`.
+Allows to disable "crouch boosting".
+When set to `0`, VRGI can not be bypassed by crouching anymore.
+Default: `1`.
 
-#### `g_disableRandomBoosts` (0 or 1)
+#### `g_randomBoosts` (0 or 1)
 
-Disable "random" boosts.
+Allows to disable "random" boosts.
 **Cheat protected**.
-Default: `0`.
+Default: `1`.
 
 #### `g_selfKnockback` (0, or 1)
 

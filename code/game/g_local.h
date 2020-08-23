@@ -237,10 +237,10 @@ extern	cvar_t	*g_ICARUSDebug;
 extern cvar_t	*g_npcdebug;
 
 // New additions for Speed-Academy
-extern	cvar_t	*g_fixSpinGlitch;
-extern	cvar_t  *g_disableCrouchBoosts;
-extern	cvar_t  *g_disableRandomBoosts;
-extern	cvar_t	*g_stickLandings;
+extern	cvar_t	*g_vrgi;
+extern	cvar_t	*g_spinGlitch;
+extern	cvar_t  *g_crouchBoosts;
+extern	cvar_t  *g_randomBoosts;
 extern	cvar_t	*g_selfKnockback;
 
 extern gentity_t *player;

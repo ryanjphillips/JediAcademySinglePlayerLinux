@@ -198,10 +198,10 @@ cvar_t	*g_navSafetyChecks;
 cvar_t	*g_broadsword;
 
 // New additions for Speed-Academy
-cvar_t	*g_fixSpinGlitch;
-cvar_t	*g_disableCrouchBoosts;
-cvar_t	*g_disableRandomBoosts;
-cvar_t	*g_stickLandings;
+cvar_t	*g_vrgi;
+cvar_t	*g_spinGlitch;
+cvar_t	*g_crouchBoosts;
+cvar_t	*g_randomBoosts;
 cvar_t	*g_selfKnockback;
 
 qboolean	stop_icarus = qfalse;
@@ -678,10 +678,10 @@ void G_InitCvars( void ) {
 
 	g_broadsword = gi.cvar( "broadsword", "1", 0);
 
-	g_fixSpinGlitch = gi.cvar( "g_fixSpinGlitch", "0", CVAR_ARCHIVE );
-	g_disableCrouchBoosts = gi.cvar( "g_disableCrouchBoosts", "0", CVAR_ARCHIVE );
-	g_disableRandomBoosts = gi.cvar( "g_disableRandomBoosts", "0", CVAR_CHEAT );
-	g_stickLandings = gi.cvar( "g_stickLandings", "1", CVAR_ARCHIVE );
+	g_vrgi = gi.cvar( "g_vrgi", "1", CVAR_ARCHIVE );
+	g_spinGlitch = gi.cvar( "g_spinGlitch", "1", CVAR_ARCHIVE );
+	g_crouchBoosts = gi.cvar( "g_crouchBoosts", "1", CVAR_ARCHIVE );
+	g_randomBoosts = gi.cvar( "g_randomBoosts", "1", CVAR_CHEAT );
 	g_selfKnockback = gi.cvar( "g_selfKnockback", "0", CVAR_CHEAT );
 
 	gi.cvar( "tier_storyinfo", "0", CVAR_ROM|CVAR_SAVEGAME|CVAR_NORESTART);

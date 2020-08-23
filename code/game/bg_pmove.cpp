@@ -3575,7 +3575,7 @@ static float PM_CrashLandDelta( vec3_t prev_vel, int waterlevel )
 
 void PM_StickLanding( void )
 {
-	if ( g_stickLandings->integer )
+	if ( g_vrgi->integer )
 	{
 		//stick landings some
 		pm->ps->velocity[0] *= 0.5f;
@@ -3619,7 +3619,7 @@ int PM_GetLandingAnim( void )
 
 	if ( PM_SpinningAnim( anim ) || PM_SaberInSpecialAttack( anim ) )
 	{
-		if ( g_fixSpinGlitch->integer ) {
+		if ( !g_spinGlitch->integer ) {
 			PM_StickLanding();
 		}
 		return -1;
@@ -3989,7 +3989,7 @@ static void PM_CrashLand( void )
 		}
 		else if ( pm->ps->jumpZStart && (pm->ps->forcePowerLevel[FP_LEVITATION] >= FORCE_LEVEL_1||(pm->ps->clientNum < MAX_CLIENTS||PM_ControlledByPlayer())) )
 		{//we were force-jumping
-			const float tolerance = (g_disableRandomBoosts->integer ? 0.25f : 0.0f);
+			const float tolerance = (g_randomBoosts->integer ? 0.0f : 0.25f);
 			if ( pm->ps->origin[2] + tolerance >= pm->ps->jumpZStart )
 			{//we landed at same height or higher than we landed
 				if ( pm->ps->forceJumpZStart )
@@ -4082,7 +4082,7 @@ static void PM_CrashLand( void )
 				}
 			}
 		}
-		else if ( (pm->cmd.upmove >= 0 || g_disableCrouchBoosts->integer) && !PM_InKnockDown( pm->ps ) && !PM_InRoll( pm->ps ))
+		else if ( (pm->cmd.upmove >= 0 || !g_crouchBoosts->integer) && !PM_InKnockDown( pm->ps ) && !PM_InRoll( pm->ps ))
 		{//not crouching
 			if ( delta > 10 
 				|| pm->ps->pm_flags & PMF_BACKWARDS_JUMP 
