@@ -680,7 +680,7 @@ void G_InitCvars( void ) {
 
 	g_fixSpinGlitch = gi.cvar( "g_fixSpinGlitch", "0", CVAR_ARCHIVE );
 	g_disableCrouchBoosts = gi.cvar( "g_disableCrouchBoosts", "0", CVAR_ARCHIVE );
-	g_disableRandomBoosts = gi.cvar( "g_disableRandomBoosts", "0", 0 );
+	g_disableRandomBoosts = gi.cvar( "g_disableRandomBoosts", "0", CVAR_CHEAT );
 	g_stickLandings = gi.cvar( "g_stickLandings", "1", CVAR_ARCHIVE );
 	g_selfKnockback = gi.cvar( "g_selfKnockback", "0", CVAR_CHEAT );
 
