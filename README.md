@@ -21,6 +21,11 @@ Default: `1`.
 Draw overbounce probabilities, G is for Go, J is for Jump.
 Default: `0`.
 
+#### `cg_drawSecrets` (0 or 1)
+
+Show a tracker for found versus total number of secrets on the current level.
+Default `0`.
+
 #### `cg_drawSpeedrunTotalTimer` (0-3)
 
 Draw a total run timer.
