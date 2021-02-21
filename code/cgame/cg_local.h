@@ -1252,4 +1252,6 @@ void cgi_SpeedrunRunFinished(void);
 int cgi_SpeedrunGetTotalTimeMilliseconds(void);
 int cgi_SpeedrunGetLevelTimeMilliseconds(void);
 
+void cgi_R_SetPlayerJumpStartWorldZ( float value );
+
 #endif	//__CG_LOCAL_H__

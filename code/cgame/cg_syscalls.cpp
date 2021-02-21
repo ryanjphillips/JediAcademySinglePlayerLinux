@@ -672,3 +672,7 @@ int cgi_SpeedrunGetTotalTimeMilliseconds(void) {
 int cgi_SpeedrunGetLevelTimeMilliseconds(void) {
 	return syscall(CG_SPEEDRUN_GET_LEVEL_TIME_MILLISECONDS);
 }
+
+void cgi_R_SetPlayerJumpStartWorldZ( float value ) {
+	syscall(CG_R_SET_PLAYER_JUMP_START_Z_WORLD, PASSFLOAT(value));
+}

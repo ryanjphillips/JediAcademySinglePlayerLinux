@@ -1170,6 +1170,64 @@ void RB_CalcRotateTexCoords( float degsPerSecond, float *st )
 }
 
 
+// Addition for Speed-Academy to help color the correct band of heights where
+// you will get a so called elevation boost. Enabled with r_showElevationBoosts.
+// Allows game code to report the height that the player jumped from or will
+// jump from to the renderer.
+static float playerJumpStartWorldZ;
+void RE_SetPlayerJumpStartWorldZ(float value) {
+	playerJumpStartWorldZ = value;
+}
+
+/*
+========================
+RB_CalcElevationTexCoords
+
+Compute texture coordinates for coloring the range that is eligible for an
+elevation boost.
+========================
+*/
+void RB_CalcElevationTexCoords( float *dstTexCoords ) {
+	// The elevation texture looks like this:
+	//
+	// -----
+	// +++++
+	// +++++
+	// -----
+	//
+	// where "-" is fully transparent and "+" is semitransparent. So now we
+	// have to map heights that are in the interval in which you get an
+	// elevation boost into the "+" region. We have exactly one row of "-" at
+	// the top and the bottom of the image, so the area of "+" is 2 pixels less
+	// than the texture size.
+	// So now we compute the elevation delta and map it from [0, 96] to [0, 1]
+	// Then we map [0, 1] into the "+" range, i.e. scale it down to the ratio
+	// that the "+" area covers of the image and shift it up by one pixel.
+
+	const float elevTextureHeight = 4.0f;  // has to be same as elevationImage height.
+	const float elevAreaHeight = (elevTextureHeight - 2.0f);
+	const float elevAreaRatio = elevAreaHeight / elevTextureHeight;
+	const float elevAreaOffset = 1.0f/elevTextureHeight;
+
+	// Not sure why, but we seem to need this offset of 1/8 to make it accurate
+	const float elevDeltaOffset = 1.0f/8.0f;
+	// This is the maximum height delta that will give an elevation boost
+	const float elevDeltaMaxAllowed = 96.0f;
+	// Standing on the ground means that the coloring is exactly on the border
+	// of the ground. That causes flickering. We therefore shift by just a tiny
+	// amount more to avoid the flickering.
+	const float antiFlickerShift = 1.0f/65536.0f;
+	for (int i = 0; i < tess.numVertexes; ++i) {
+		// the actual elevation delta that the play would have if they land here.
+		const float elevDelta = playerJumpStartWorldZ - (tess.xyz[i][2] + backEnd.ori.origin[2]);
+		dstTexCoords[0] = 0.5f;  // X-coordinate doesnt matter
+		dstTexCoords[1] = (elevDelta - elevDeltaOffset - antiFlickerShift) /
+						  (elevDeltaMaxAllowed) * elevAreaRatio + elevAreaOffset;
+		dstTexCoords += 2;
+	}
+}
+
+
 
 
 

@@ -81,6 +81,11 @@ Default: `0.0` (directly under the strafe helper).
 Vertical position of the strafe helper.
 Default: `50.0`.
 
+#### `r_showElevationBoosts` (0 or 1)
+
+Enable or disable coloring heights that give an elevation boost if jumping from
+the current height.
+
 ### Gameplay
 
 #### `g_vrgi` (0 or 1)
