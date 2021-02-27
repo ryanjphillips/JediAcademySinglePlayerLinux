@@ -121,3 +121,16 @@ When set to `1`, ingame timer will reset every time an autosave is loaded.
 When set to `0`, ingame timer will reset only when yavin1b is loaded.
 Note that this is currently not the timing that is used on the leaderboards.
 Default: `0`.
+
+#### `sv_speedrunModeCheckpoint` (0 or 1)
+
+Mode for running from quicksave to a specified checkpoint on a map.
+Coordinates can be set with the command `settimedcheckpoint x1 y1 z1 x2 y2 z2`.
+When the player enters the box spanned by the two points `(x1 y1 z1)` and `(x2 y2 z2)` the run is finished.
+If `x2`, `y2` and `z2` are omitted, a checkpoint of reasonable size will be created at `(x1 y1 z1)`.
+Default: `0`.
+
+#### `sv_speedrunModeCheckpointSave` (0 or 1)
+
+Create an automatic save when a checkpoint is reached in checkpoint mode.
+Default: `0`.
