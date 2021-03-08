@@ -1221,8 +1221,9 @@ void RB_CalcElevationTexCoords( float *dstTexCoords ) {
 	const float antiFlickerShift = 1.0f/65536.0f;
 	for (int i = 0; i < tess.numVertexes; ++i) {
 		// estimated height at which player would collide with this surface.
-		const float collisionZEstimate = (tess.xyz[i][2] +
-			backEnd.ori.origin[2] + surfaceClipEpsilon);
+		// We round this to 1/8th. Not quite sure why, but seems necessary.
+		const float collisionZEstimate = ((int)((tess.xyz[i][2] +
+			backEnd.ori.origin[2] + surfaceClipEpsilon) * 8.0f)) / 8.0f;
 		// the actual elevation delta that the player would have if they land here.
 		const float elevDelta = playerJumpStartWorldZ - collisionZEstimate;
 		dstTexCoords[0] = 0.5f;  // X-coordinate doesnt matter
