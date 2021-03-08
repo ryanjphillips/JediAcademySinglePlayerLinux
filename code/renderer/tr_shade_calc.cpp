@@ -1209,8 +1209,10 @@ void RB_CalcElevationTexCoords( float *dstTexCoords ) {
 	const float elevAreaRatio = elevAreaHeight / elevTextureHeight;
 	const float elevAreaOffset = 1.0f/elevTextureHeight;
 
-	// Not sure why, but we seem to need this offset of 1/8 to make it accurate
-	const float elevDeltaOffset = 1.0f/8.0f;
+	// This reflects SURFACE_CLIP_EPSILON from the collision code (cm_local.h).
+	// A small hull around geometry such that collision starts a little earlier.
+	// So we have to add this to the geometry here as well.
+	const float surfaceClipEpsilon = 0.125f;
 	// This is the maximum height delta that will give an elevation boost
 	const float elevDeltaMaxAllowed = 96.0f;
 	// Standing on the ground means that the coloring is exactly on the border
@@ -1218,11 +1220,14 @@ void RB_CalcElevationTexCoords( float *dstTexCoords ) {
 	// amount more to avoid the flickering.
 	const float antiFlickerShift = 1.0f/65536.0f;
 	for (int i = 0; i < tess.numVertexes; ++i) {
-		// the actual elevation delta that the play would have if they land here.
-		const float elevDelta = playerJumpStartWorldZ - (tess.xyz[i][2] + backEnd.ori.origin[2]);
+		// estimated height at which player would collide with this surface.
+		const float collisionZEstimate = (tess.xyz[i][2] +
+			backEnd.ori.origin[2] + surfaceClipEpsilon);
+		// the actual elevation delta that the player would have if they land here.
+		const float elevDelta = playerJumpStartWorldZ - collisionZEstimate;
 		dstTexCoords[0] = 0.5f;  // X-coordinate doesnt matter
-		dstTexCoords[1] = (elevDelta - elevDeltaOffset - antiFlickerShift) /
-						  (elevDeltaMaxAllowed) * elevAreaRatio + elevAreaOffset;
+		dstTexCoords[1] = (elevDelta - antiFlickerShift) /
+		                  (elevDeltaMaxAllowed) * elevAreaRatio + elevAreaOffset;
 		dstTexCoords += 2;
 	}
 }
