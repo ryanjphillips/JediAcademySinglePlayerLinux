@@ -1218,7 +1218,7 @@ void RB_CalcElevationTexCoords( float *dstTexCoords ) {
 	// Standing on the ground means that the coloring is exactly on the border
 	// of the ground. That causes flickering. We therefore shift by just a tiny
 	// amount more to avoid the flickering.
-	const float antiFlickerShift = 1.0f/65536.0f;
+	const float antiFlickerShift = 1.0f/16384.0f;
 	for (int i = 0; i < tess.numVertexes; ++i) {
 		// estimated height at which player would collide with this surface.
 		// We round this to 1/8th. Not quite sure why, but seems necessary.
