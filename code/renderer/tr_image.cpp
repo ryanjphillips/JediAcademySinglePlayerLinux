@@ -131,14 +131,6 @@ void GL_TextureMode( const char *string ) {
 	   				 R_Images_StartIteration();
 	while ( (glt   = R_Images_GetNextIteration()) != NULL)
 	{
-		if (strstr(glt->imgName, "elevation")) {
-			// Special case: to avoid smoothing in coloring the elevation boost
-			// heights we always want this to be nearest texture filtering.
-			GL_Bind(glt);
-			qglTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			qglTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			continue;
-		}
 #ifdef _XBOX
 		if ( glt->mipcount ) {
 #else
@@ -2706,7 +2698,7 @@ static void R_CreateElevationImage( void ) {
 	// for an elevation boost and outside of it otherwise. By using GL_CLAMP
 	// mode for the texture, any values outside of the texture will be fully
 	// transparent (the "-"). To not have smoothing on the edges of the
-	// elevation boost area, we set filter mode to GL_NEAREST in GL_TextureMode.
+	// elevation boost area, we set filter mode to GL_NEAREST.
 	const int elevationImageHeight = 4;
 	const byte elevationColoringAlpha = 64;
 	byte data[elevationImageHeight][4];
@@ -2724,6 +2716,9 @@ static void R_CreateElevationImage( void ) {
 	data[elevationImageHeight-1][2] = 0;
 	data[elevationImageHeight-1][3] = 0;
 	tr.elevationImage = R_CreateImage("*elevation", (byte *)data, 1, elevationImageHeight, GL_RGBA, qfalse, qfalse, qtrue, GL_CLAMP);
+	GL_Bind(tr.elevationImage);
+	qglTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	qglTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
 /*
