@@ -93,6 +93,12 @@ Default: `50.0`.
 Enable or disable coloring heights that give an elevation boost if jumping from
 the current height.
 
+#### `r_showElevationBoostsColor[R,G or B]` (0 - 255)
+
+Color components (red, green, blue) used to mark heights that will give an elevation boost.
+Color can be set more conveniently with the command `showElevationBoostsColor`.
+Applies after reloading the map.
+
 ### Gameplay
 
 #### `g_vrgi` (0 or 1)
@@ -146,3 +152,12 @@ Default: `0`.
 
 Create an automatic save when a checkpoint is reached in checkpoint mode.
 Default: `0`.
+
+## New Commands
+
+### HUD
+
+#### `showElevationBoostsColor <r> <g> <b>` (components in range 0 to 255)
+
+Sets the color for showing elevation boosts.
+Applies after reloading the map.
