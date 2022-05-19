@@ -78,6 +78,11 @@ Default: `4.0`.
 Scale of the text for speed display.
 Default: `0.9`.
 
+#### `cg_strafeHelperSpeedX` (#)
+
+Horizontal offset of the text for speed display, relative to the center of the screen.
+Default: `0.0` (center of the screen).
+
 #### `cg_strafeHelperSpeedY` (#)
 
 Vertical offset of the text for speed display, relative to the strafe helper.
@@ -87,6 +92,12 @@ Default: `0.0` (directly under the strafe helper).
 
 Vertical position of the strafe helper.
 Default: `50.0`.
+
+#### `cg_strafeHelperColor[...]` (0.0 - 1.0)
+
+Color components (red, green, blue, alpha) for different strafe helper elements.
+These are `Accelerating`, `Optimal`, `CenterMarker` and `Speed`.
+Colors can be set more conveniently with the corresponding commands.
 
 #### `r_showElevationBoosts` (0 or 1)
 
@@ -156,6 +167,10 @@ Default: `0`.
 ## New Commands
 
 ### HUD
+
+#### `strafeHelperColor[...] <r> <g> <b> <a>` (components in range 0.0 to 1.0)
+
+Sets the color for one of the strafe helper elements `Accelerating`, `Optimal`, `CenterMarker` or `Speed` to the given red, green, blue and alpha values.
 
 #### `showElevationBoostsColor <r> <g> <b>` (components in range 0 to 255)
 
