@@ -1322,10 +1322,10 @@ extern void R_WorldEffect_f(void);	//TR_WORLDEFFECTS.CPP
 	Cmd_AddCommand( "r_we", R_WorldEffect_f );
 extern void R_ReloadFonts_f(void);
 	Cmd_AddCommand( "r_reloadfonts", R_ReloadFonts_f );
-	// make sure all the commands added above are also
-	// removed in R_Shutdown
 
 	Cmd_AddCommand( "showElevationBoostsColor", R_SetShowElevationBoostsColor_f );
+	// make sure all the commands added above are also
+	// removed in R_Shutdown
 }
 
 // need to do this hackery so ghoul2 doesn't crash the game because of ITS hackery...
@@ -1474,6 +1474,8 @@ void RE_Shutdown( qboolean destroyWindow ) {
 	Cmd_RemoveCommand ("imagecacheinfo");
 	Cmd_RemoveCommand ("r_we");
 	Cmd_RemoveCommand ("r_reloadfonts");
+
+	Cmd_RemoveCommand ( "showElevationBoostsColor");
 
 	R_ShutdownWorldEffects();
 #ifndef _XBOX
