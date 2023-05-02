@@ -1,4 +1,4 @@
-#About
+##About
 This project is a fork of https://github.com/xLAva/JediAcademyLinux
 
 I have removed the Oculus related code to have a more "clean" version of the single player source.
